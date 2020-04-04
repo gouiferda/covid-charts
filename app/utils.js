@@ -36,7 +36,7 @@ console.log('theme:'+theme);
             btn.addEventListener('click', function() {
                 setTheme('light')
             }, false);
-            isDarkTheme = false;
+            isDarkTheme = true;
             break;
         case 'light':
             linkTheme.href = "assets/css/bootstrap.min.css";
@@ -44,7 +44,7 @@ console.log('theme:'+theme);
             btn.addEventListener('click', function() {
                 setTheme('dark')
             }, false);
-            isDarkTheme = true;
+            isDarkTheme = false;
             break;
     }
 }
