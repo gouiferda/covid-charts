@@ -1,21 +1,15 @@
 
 ## Covid charts project:
 
-### Live link:
-
-https://gouiferda.github.io/covid
-
-### Description:
-
 Visual representation of covid-19 data around the world
 
-### Project link:
+[Live preview](https://gouiferda.github.io/covid)
 
-https://github.com/gouiferda/gouiferda.github.io/tree/master/covid
+[Project link](https://github.com/gouiferda/gouiferda.github.io/tree/master/covid)
 
 ### Features:
 
-Updated data, Interactive charts, Dark mode
+Updated covid-19 data, Multiple countries, Countries data, Interactive charts, Dark mode
 
 ### Screenshots:
 
