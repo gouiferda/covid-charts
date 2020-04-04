@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Corona chart</title>
+    <script src="assets/Chart.min.js"></script>
+    <script src="assets/utils.js"></script>
+    <style>
+        canvas {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="text-align: center;margin: 50px 50px 50px 50px;">
+        <h1>Corona charts</h1>
+        <small style="float: right;">Data updated at: <span id='updated'></span></small>
+        <br>
+        <small style="float: right;">Created by: @gouiferda</small>
+    </div>
+
+    <div style="width:100%;text-align: center;">
+        <select onchange="setCountry(this.value);">
+            <option value="morocco" selected>morocco</option>
+            <option value="china">china</option>
+            <option value="usa">usa</option>
+            <option value="italy">italy</option>
+            <option value="spain">spain</option>
+            <option value="germany">germany</option>
+            <option value="iran">iran</option>
+            <option value="japan">japan</option>
+            <option value="uk">uk</option>
+            <option value="algeria">algeria</option>
+            <option value="france">france</option>
+        </select>
+    </div>
+    <div style="width:100%;">
+        <canvas id="canvasPie"></canvas>
+    </div>
+    <br>
+    <div style="width:100%;">
+        <canvas id="canvasLine"></canvas>
+    </div>
+    <br>
+    <br>
+    <script>
+
+        var chosen_country = 'morocco';
+
+        getHistoryChart();
+            getTodayChart();
+            
+        function setCountry(val)
+        {
+            chosen_country = val;
+
+            getHistoryChart();
+            getTodayChart();
+        }
+
+        function getDate(unix_timestamp) {
+            var date = new Date(unix_timestamp);
+            return date.toLocaleString();
+        }
+
+        // async function
+        async function getData(dataType, country) {
+
+            var apiLink = '';
+
+            if (dataType == 'history')
+                apiLink = 'https://corona.lmao.ninja/v2/historical';
+            if (dataType == 'today')
+                apiLink = 'https://corona.lmao.ninja/countries';
+
+            apiLink += '/' + country;
+
+            // await response of fetch call
+            let response = await fetch(apiLink);
+            // only proceed once promise is resolved
+            let data = await response.json();
+            return data;
+        }
+
+        function getHistoryChart()
+        {
+        getData('history', chosen_country).then(data => {
+
+       
+            var ctx = document.getElementById('canvasLine').getContext('2d');
+
+
+            var configLine = {
+                type: 'line',
+                data: {
+                    labels: Object.keys(data.timeline.cases),
+                    datasets: [{
+                        label: 'Corona cases',
+                        backgroundColor: window.chartColors.orange,
+                        borderColor: window.chartColors.orange,
+                        data: Object.values(data.timeline.cases), //
+                        fill: false,
+                    },
+                    {
+                        label: 'Death cases',
+                        backgroundColor: window.chartColors.red,
+                        borderColor: window.chartColors.red,
+                        data: Object.values(data.timeline.deaths), //
+                        fill: false,
+                    },
+                    {
+                        label: 'Recovered cases',
+                        backgroundColor: window.chartColors.green,
+                        borderColor: window.chartColors.green,
+                        data: Object.values(data.timeline.recovered), //
+                        fill: false,
+                    }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: 'Progress of cases'
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: true
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Date'
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Cases'
+                            }
+                        }]
+                    }
+                }
+            };
+            
+            if (window.myLine) window.myLine.destroy();
+            window.myLine = new Chart(ctx, configLine);
+
+
+        });
+    }
+
+       function getTodayChart()
+       {getData('today', chosen_country).then(data => {
+
+       
+
+        var ctx = document.getElementById('canvasPie').getContext('2d');
+
+            var configPie = {
+                type: 'pie',
+                data: {
+                    datasets: [{
+                        data: [
+                            data.active,
+                            data.recovered,
+                            data.deaths
+                        ],
+                        backgroundColor: [
+                            window.chartColors.orange,
+                            window.chartColors.green,
+                            window.chartColors.red
+                        ],
+                        label: 'Total cases: ' + data.cases
+                    }],
+                    labels: [
+                        'Active cases ('+data.active+')',
+                        'Recovered cases ('+data.recovered+')',
+                        'Deaths cases ('+data.deaths+')'
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: 'Total cases: ' + data.cases
+                    },
+                    tooltips: {
+                        callbacks: {
+                            label: function (tooltipItem, data) {
+                                //get the concerned dataset
+                                var dataset = data.datasets[tooltipItem.datasetIndex];
+                                //calculate the total of this data set
+                                var total = dataset.data.reduce(function (previousValue, currentValue, currentIndex, array) {
+                                    return previousValue + currentValue;
+                                });
+                                //get the current items value
+                                var currentValue = dataset.data[tooltipItem.index];
+                                //calculate the precentage based on the total and current item, also this does a rough rounding to give a whole number
+                                var percentage = Math.floor(((currentValue / total) * 100) + 0.5);
+
+                                return " "+data.labels[tooltipItem.index]+" cases (" + percentage + "%)";
+                            }
+                        }
+                    }
+                }
+            };
+
+            if (window.myPie) window.myPie.destroy();
+            window.myPie = new Chart(ctx, configPie);
+
+            var updated = document.getElementById('updated');
+            updated.innerHTML = getDate(data.updated);
+
+        });
+    } 
+    </script>
+</body>
+
+</html>
