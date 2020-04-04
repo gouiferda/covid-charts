@@ -105,7 +105,7 @@ function getCountryInfo() {
 
 
 function getHistoryChart() {
-    getData('history', chosenCountry).then(data => {
+    getDataCovid('history', chosenCountry).then(data => {
 
 
         var ctx = document.getElementById('canvasLine').getContext('2d');

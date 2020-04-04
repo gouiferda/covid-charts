@@ -16,3 +16,11 @@ function appendInside(txt,id) {
     var elem = document.getElementById(id);
     elem.innerHTML += txt;
 }
+
+async function getJSONData(apiLink) {
+    // await response of fetch call
+    let response = await fetch(apiLink);
+    // only proceed once promise is resolved
+    let data = await response.json();
+    return data;
+}
