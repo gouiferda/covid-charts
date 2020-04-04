@@ -95,7 +95,7 @@ function getPieChartConfig(dataGot,labelsGot,titleGot)
             legend: {
                 labels: {
                     fontColor: "grey",
-                    fontSize: 18
+                    fontSize: 15
                 }
             },
             title: {
