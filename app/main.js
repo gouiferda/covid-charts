@@ -15,7 +15,7 @@ var citiesArr = [
 var selectCountry = document.getElementById('selectCountry');
 for (var i = 0; i < citiesArr.length; i++) {
     var option = document.createElement("option");
-    option.text = citiesArr[i];
+    option.text = ucf(citiesArr[i]);
     option.value = citiesArr[i];
     if (citiesArr[i] == 'morocco')
         option.selected = 'selected';
@@ -120,12 +120,25 @@ function getTodayChart() {
 
         var countryInfo = document.getElementById('countryInfo');
         var countryInfoText = '';
-        countryInfoText += '<h2>Country: '+chosenCountry+'</h2>';
+
+        var countryImg = document.getElementById('countryImg');
+        countryImg.src = data.countryInfo.flag;
+
+        countryInfoText += '<ul class="list-group list-group-flush">';
+        countryInfoText += '<li class="list-group-item">'+ucf(chosenCountry)+'</li> ';
+        // countryInfoText += '<li class="list-group-item">Dapibus ac facilisis in</li> ';
+        // countryInfoText += '<li class="list-group-item">Vestibulum at eros</li> ';
+        countryInfoText += '</ul> ';
+       
 
         countryInfo.innerHTML = countryInfoText;
 
     });
 } 
+
+function ucf(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
 function getHistoryChart() {
     getData('history', chosenCountry).then(data => {
