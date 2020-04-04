@@ -2,4 +2,4 @@
 
 - Live link: https://gouiferda.github.io/
 
-![Image of Yaktocat](https://i.imgur.com/qFd2dv6.png)
+![Image](https://i.imgur.com/ynhyN28.png)
