@@ -22,6 +22,22 @@ function getTodayChart() {
 
         var countryName = document.getElementById('countryName');
         countryName.innerHTML = ucf(chosenCountry);
+
+        var totalCases = parseInt(data.cases);
+        var deathsCases = parseInt(data.deaths);
+        var recoveredCases = parseInt(data.recovered);
+        var activeCases = totalCases - (deathsCases + recoveredCases);
+
+        var countryInfoText = '';
+        countryInfoText += '<br><br>';
+        countryInfoText += 'Total cases: ' + betterNumbers(totalCases);
+        countryInfoText += '<br>';
+        countryInfoText += 'Active cases: ' + betterNumbers(activeCases);
+        countryInfoText += '<br>';
+        countryInfoText += 'Total died: ' + betterNumbers(deathsCases);
+        countryInfoText += '<br>';
+        countryInfoText += 'Total recovered: ' + betterNumbers(recoveredCases);
+        appendInside(countryInfoText,'countryInfo');
         
 
     });

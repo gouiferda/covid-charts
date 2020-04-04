@@ -22,13 +22,14 @@ function getLineChartConfig(labelsGot,titleGot,datasetsGot)
             responsive: true,
             legend: {
                 labels: {
-                    fontColor: "white",
+                    fontColor: "grey",
                     fontSize: 18
                 }
             },
             title: {
                 display: true,
-                text: titleGot
+                text: titleGot,
+                fontSize: 18
             },
             tooltips: {
                 mode: 'index',
@@ -81,13 +82,14 @@ function getPieChartConfig(dataGot,labelGot,labelsGot,titleGot)
             cutoutPercentage: 50,
             legend: {
                 labels: {
-                    fontColor: "white",
+                    fontColor: "grey",
                     fontSize: 18
                 }
             },
             title: {
                 display: true,
-                text: titleGot
+                text: titleGot,
+                fontSize: 18
             },
             tooltips: {
                 callbacks: {
@@ -102,7 +104,6 @@ function getPieChartConfig(dataGot,labelGot,labelsGot,titleGot)
                         var currentValue = dataset.data[tooltipItem.index];
                         //calculate the precentage based on the total and current item, also this does a rough rounding to give a whole number
                         var percentage = Math.floor(((currentValue / total) * 100) + 0.5);
-
                         return " " + data.labels[tooltipItem.index] + " (" + percentage + "%)";
                     }
                 }
@@ -124,9 +125,9 @@ function drawChart(chartType, data, canvasId) {
             ],
             'Total cases: ' + data.cases,
             [
-                'Active cases (' + data.active + ')',
-                'Recovered cases (' + data.recovered + ')',
-                'Deaths cases (' + data.deaths + ')'
+                'Active cases: ' + data.active,
+                'Recovered cases: ' + data.recovered,
+                'Deaths cases: ' + data.deaths
             ],
             'Total cases: ' + betterNumbers(data.cases)
         );
