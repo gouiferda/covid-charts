@@ -115,7 +115,7 @@ function getPieChartConfig(dataGot,labelGot,labelsGot,titleGot)
 function drawChart(chartType, data, canvasId) {
     var ctx = document.getElementById(canvasId).getContext('2d');
 
-    if (chartType == 'pie') {
+    if (chartType == 'today') {
         var configPie = getPieChartConfig(
             [
                 data.active,
@@ -133,7 +133,7 @@ function drawChart(chartType, data, canvasId) {
         if (window.myPie) window.myPie.destroy();
         window.myPie = new Chart(ctx, configPie);
     }
-    else if(chartType == 'line')
+    else if(chartType == 'history')
     {
         var deathCases = Object.values(data.timeline.deaths);
         var recoveredCases = Object.values(data.timeline.recovered);
@@ -204,6 +204,4 @@ function drawChart(chartType, data, canvasId) {
         if (window.myLine) window.myLine.destroy();
         window.myLine = new Chart(ctx, configLine);
     }
-
-
 }

@@ -12,7 +12,7 @@ function setCountry(val) {
 function getTodayChart() {
     getDataCovid('today', chosenCountry).then(data => {
 
-        drawChart('pie',data,'canvasPie');
+        drawChart('today',data,'canvasPie');
         
         var updated = document.getElementById('updated');
         updated.innerHTML = getDate(data.updated);
@@ -46,9 +46,6 @@ function getCountryInfo() {
 
 function getHistoryChart() {
     getDataCovid('history', chosenCountry).then(data => {
-
-
-        drawChart('line',data,'canvasLine');
-
+        drawChart('history',data,'canvasLine');
     });
 }

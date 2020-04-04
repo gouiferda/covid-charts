@@ -5,7 +5,7 @@
     <title>Covid chart</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="assets/css/bootstrap2.min.css">
+    <link rel="stylesheet" id="linkTheme" href="assets/css/dark.min.css">
     <link rel="stylesheet" href="assets/css/custom.css">
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
@@ -15,7 +15,7 @@
 
 <body>
 
-    <div class="jumbotron">
+    <div class="jumbotron" style="padding: 15px">
 
         <div class=" text-center">
             <h1>Covid charts</h1>
@@ -33,7 +33,7 @@
         </div>
 
         <div class="mt-0"></div>
-        <p class="float-right text-right">
+        <p class="text-right">
             Data updated at: <span id='updated'></span>
             <br>
             Data sources:
@@ -42,12 +42,9 @@
             <br>
             Created by:
             <a href="https://twitter.com/notsoufiane">@notsoufiane</a>
+            <br><br>
+            <img class="rounded" id="btnTheme" style="width:30px;height:30px;" onclick="setTheme('light');" src="assets/img/light.png" />
         </p>
-        <br>
-        <p style="float: right;">
-
-        </p>
-
     </div>
 
     <div class="container">

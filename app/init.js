@@ -25,7 +25,6 @@ for (var i = 0; i < citiesArr.length; i++) {
 }
 
 var chosenCountry = 'morocco';
-
 getHistoryChart();
 getTodayChart();
 getCountryInfo();
