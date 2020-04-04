@@ -37,7 +37,7 @@ function getTodayChart() {
         countryInfoText += 'Total died: ' + betterNumbers(deathsCases);
         countryInfoText += '<br>';
         countryInfoText += 'Total recovered: ' + betterNumbers(recoveredCases);
-        appendInside(countryInfoText,'countryInfo');
+        replaceInside(countryInfoText,'countryStats');
         
 
     });

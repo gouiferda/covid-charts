@@ -17,6 +17,11 @@ function appendInside(txt, id) {
     elem.innerHTML += txt;
 }
 
+function replaceInside(txt, id) {
+    var elem = document.getElementById(id);
+    elem.innerHTML = txt;
+}
+
 async function getJSONData(apiLink) {
     // await response of fetch call
     let response = await fetch(apiLink);
