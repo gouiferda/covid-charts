@@ -1,15 +1,16 @@
 var citiesArr = [
     "morocco",
     "china",
-    "usa",
+    "france",
     "italy",
     "spain",
     "germany",
+    "algeria",
+    "usa",
     "iran",
     "japan",
     "uk",
-    "algeria",
-    "france",
+    "korea",
 ];
 
 
