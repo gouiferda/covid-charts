@@ -1,7 +1,11 @@
 # Portfolio
 
-## Covid charts project:
+## [Covid charts project](https://github.com/gouiferda/gouiferda.github.io/tree/master/covid):
 
-- Live link: https://gouiferda.github.io/covid
+### Live link:
 
-![Image](https://i.imgur.com/MEI6t99.png)
+https://gouiferda.github.io/covid
+
+### Description:
+
+Visual representation of covid-19 data around the world
