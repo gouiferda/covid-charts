@@ -107,7 +107,6 @@ function getCountryInfo() {
 function getHistoryChart() {
     getDataCovid('history', chosenCountry).then(data => {
 
-
         var ctx = document.getElementById('canvasLine').getContext('2d');
 
         var deathCases = Object.values(data.timeline.deaths);
