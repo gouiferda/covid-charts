@@ -1,31 +1,4 @@
-var citiesArr = [
-    "morocco",
-    "china",
-    "usa",
-    "italy",
-    "spain",
-    "germany",
-    "iran",
-    "japan",
-    "uk",
-    "algeria",
-    "france",
-];
 
-var selectCountry = document.getElementById('selectCountry');
-for (var i = 0; i < citiesArr.length; i++) {
-    var option = document.createElement("option");
-    option.text = ucf(citiesArr[i]);
-    option.value = citiesArr[i];
-    if (citiesArr[i] == 'morocco')
-        option.selected = 'selected';
-    selectCountry.appendChild(option);
-}
-
-var chosenCountry = 'morocco';
-
-getHistoryChart();
-getTodayChart();
 
 function setCountry(val) {
     chosenCountry = val;
@@ -34,29 +7,7 @@ function setCountry(val) {
     getTodayChart();
 }
 
-function getDate(unix_timestamp) {
-    var date = new Date(unix_timestamp);
-    return date.toLocaleString();
-}
 
-// async function
-async function getData(dataType, country) {
-
-    var apiLink = '';
-
-    if (dataType == 'history')
-        apiLink = 'https://corona.lmao.ninja/v2/historical';
-    if (dataType == 'today')
-        apiLink = 'https://corona.lmao.ninja/countries';
-
-    apiLink += '/' + country;
-
-    // await response of fetch call
-    let response = await fetch(apiLink);
-    // only proceed once promise is resolved
-    let data = await response.json();
-    return data;
-}
 
 function getTodayChart() {
     getData('today', chosenCountry).then(data => {
@@ -89,7 +40,7 @@ function getTodayChart() {
                 responsive: true,
                 title: {
                     display: true,
-                    text: 'Total cases: ' + data.cases
+                    text: 'Total cases: ' + betterNumbers(data.cases)
                 },
                 tooltips: {
                     callbacks: {
@@ -118,8 +69,7 @@ function getTodayChart() {
         var updated = document.getElementById('updated');
         updated.innerHTML = getDate(data.updated);
 
-        var countryInfo = document.getElementById('countryInfo');
-        var countryInfoText = '';
+
 
         var countryImg = document.getElementById('countryImg');
         countryImg.src = data.countryInfo.flag;
@@ -127,21 +77,32 @@ function getTodayChart() {
         var countryName = document.getElementById('countryName');
         countryName.innerHTML = ucf(chosenCountry);
 
-    //     countryInfoText += '<ul class="list-group list-group-flush">';
-    //    // countryInfoText += '<li class="list-group-item">'+ucf(chosenCountry)+'</li> ';
-    //      countryInfoText += '<li class="list-group-item">Dapibus ac facilisis in</li> ';
-    //     // countryInfoText += '<li class="list-group-item">Vestibulum at eros</li> ';
-    //     countryInfoText += '</ul> ';
-       
-
-        countryInfo.innerHTML = countryInfoText;
+        //     countryInfoText += '<ul class="list-group list-group-flush">';
+        //    // countryInfoText += '<li class="list-group-item">'+ucf(chosenCountry)+'</li> ';
+        //      countryInfoText += '<li class="list-group-item">Dapibus ac facilisis in</li> ';
+        //     // countryInfoText += '<li class="list-group-item">Vestibulum at eros</li> ';
+        //     countryInfoText += '</ul> ';
+        
 
     });
-} 
 
-function ucf(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+}
+
+
+function getCountryInfo() {
+
+    getDataCountry(chosenCountry).then(data => {
+        // console.log(data[0].population);
+        var population = data[0].population;
+
+        var countryInfoText = '';
+        countryInfoText += 'Population: ' + betterNumbers(population);
+        appendInside(countryInfoText,'countryInfo');
+
+    });
+
+}
+
 
 function getHistoryChart() {
     getData('history', chosenCountry).then(data => {
@@ -158,7 +119,7 @@ function getHistoryChart() {
         var currentActiveCase = 0;
         for (var i = 0; i < totalCases.length; i++) {
             currentActiveCase = parseInt(totalCases[i]) - (parseInt(recoveredCases[i]) + parseInt(deathCases[i]));
-           // console.log(currentActiveCase);
+            // console.log(currentActiveCase);
             activeCases.push(currentActiveCase);
         }
 
@@ -167,9 +128,9 @@ function getHistoryChart() {
         var newCasesThatDay = 0;
         for (var i = 0; i < totalCases.length; i++) {
             newCasesThatDay = parseInt(totalCases[i]) - prevDayTotalCases;
-           // console.log(currentActiveCase);
-           newCases.push(newCasesThatDay);
-           prevDayTotalCases = parseInt(totalCases[i]);
+            // console.log(currentActiveCase);
+            newCases.push(newCasesThatDay);
+            prevDayTotalCases = parseInt(totalCases[i]);
         }
 
         var configLine = {
