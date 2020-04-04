@@ -124,11 +124,14 @@ function getTodayChart() {
         var countryImg = document.getElementById('countryImg');
         countryImg.src = data.countryInfo.flag;
 
-        countryInfoText += '<ul class="list-group list-group-flush">';
-        countryInfoText += '<li class="list-group-item">'+ucf(chosenCountry)+'</li> ';
-        // countryInfoText += '<li class="list-group-item">Dapibus ac facilisis in</li> ';
-        // countryInfoText += '<li class="list-group-item">Vestibulum at eros</li> ';
-        countryInfoText += '</ul> ';
+        var countryName = document.getElementById('countryName');
+        countryName.innerHTML = ucf(chosenCountry);
+
+    //     countryInfoText += '<ul class="list-group list-group-flush">';
+    //    // countryInfoText += '<li class="list-group-item">'+ucf(chosenCountry)+'</li> ';
+    //      countryInfoText += '<li class="list-group-item">Dapibus ac facilisis in</li> ';
+    //     // countryInfoText += '<li class="list-group-item">Vestibulum at eros</li> ';
+    //     countryInfoText += '</ul> ';
        
 
         countryInfo.innerHTML = countryInfoText;
