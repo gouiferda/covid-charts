@@ -79,7 +79,7 @@ function getPieChartConfig(dataGot,labelGot,labelsGot,titleGot)
         },
         options: {
             responsive: true,
-            cutoutPercentage: 50,
+           // cutoutPercentage: 50,
             legend: {
                 labels: {
                     fontColor: "grey",
@@ -107,7 +107,28 @@ function getPieChartConfig(dataGot,labelGot,labelsGot,titleGot)
                         return " " + data.labels[tooltipItem.index] + " (" + percentage + "%)";
                     }
                 }
-            }
+            },
+            plugins: {
+                
+                labels: [
+                    {
+                      render: 'label',
+                      position: 'outside',
+                      fontColor:  function (data) {
+                        return 'grey';
+                      },
+                    },
+                    {
+                        render: 'percentage',
+                        fontColor:  function (data) {
+                          return 'white';
+                        },
+                        precision: 2
+                      }
+                  ]
+                  
+                  
+              },
         }
     };
     return configPie;
