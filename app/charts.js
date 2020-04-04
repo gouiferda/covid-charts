@@ -54,6 +54,18 @@ function getLineChartConfig(labelsGot,titleGot,datasetsGot)
                         labelString: 'Cases'
                     }
                 }]
+            },
+            plugins: {
+                zoom: {
+                    pan: {
+                        enabled: true,
+                        mode: 'x'
+                    },
+                    zoom: {
+                        enabled: true,
+                        mode: 'x',
+                    }
+                }
             }
         }
     };
@@ -61,7 +73,7 @@ function getLineChartConfig(labelsGot,titleGot,datasetsGot)
 
 }
 
-function getPieChartConfig(dataGot,labelGot,labelsGot,titleGot)
+function getPieChartConfig(dataGot,labelsGot,titleGot)
 {
     var configPie = {
         type: 'pie',
@@ -73,7 +85,7 @@ function getPieChartConfig(dataGot,labelGot,labelsGot,titleGot)
                     window.chartColors.green,
                     window.chartColors.red
                 ],
-                label: labelGot
+                label: titleGot
             }],
             labels: labelsGot
         },
@@ -144,11 +156,10 @@ function drawChart(chartType, data, canvasId) {
                 data.recovered,
                 data.deaths
             ],
-            'Total cases: ' + data.cases,
             [
                 'Active cases: ' + data.active,
                 'Recovered cases: ' + data.recovered,
-                'Deaths cases: ' + data.deaths
+                'Death cases: ' + data.deaths
             ],
             'Total cases: ' + betterNumbers(data.cases)
         );
