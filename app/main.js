@@ -10,7 +10,7 @@ function setCountry(val) {
 
 
 function getTodayChart() {
-    getData('today', chosenCountry).then(data => {
+    getDataCovid('today', chosenCountry).then(data => {
 
         var ctx = document.getElementById('canvasPie').getContext('2d');
 
