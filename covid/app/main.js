@@ -41,6 +41,17 @@ function getTodayChart() {
         var recoveredCases = parseInt(data.recovered);
         var activeCases = totalCases - (deathsCases + recoveredCases);
 
+        var totalTests = parseInt(data.tests);
+        var negativeTests = parseInt(data.tests) - parseInt(data.cases);
+        var todayDeaths = parseInt(data.todayDeaths);
+        var todayCases = parseInt(data.todayCases);
+
+        var criticalCases = parseInt(data.critical);
+
+        var casesPerOneMillion = parseInt(data.casesPerOneMillion);
+        var deathsPerOneMillion = parseInt(data.deathsPerOneMillion);
+
+
         var countryInfoText = '';
         var redClass = 'danger';
         var orangeClass = 'warning';
@@ -53,15 +64,25 @@ function getTodayChart() {
         countryInfoText += '<div class="col">';
         countryInfoText += '<ul class="list-group">';
         countryInfoText += getListItem('Total cases',betterNumbers(totalCases),darkClass);
-        countryInfoText += getListItem('Active cases ('+getPercentage(activeCases,totalCases)+'%)',betterNumbers(activeCases),orangeClass);
-        countryInfoText += getListItem('Deaths ('+getPercentage(deathsCases,totalCases)+'%)',betterNumbers(deathsCases),redClass);
-        countryInfoText += getListItem('Recovered ('+getPercentage(recoveredCases,totalCases)+'%)',betterNumbers(recoveredCases),greenClass);
+        countryInfoText += getListItem('Active cases ('+getPercentage(activeCases,totalCases,2)+')',betterNumbers(activeCases),orangeClass);
+        countryInfoText += getListItem('Deaths ('+getPercentage(deathsCases,totalCases,2)+')',betterNumbers(deathsCases),redClass);
+        countryInfoText += getListItem('Recovered ('+getPercentage(recoveredCases,totalCases,2)+')',betterNumbers(recoveredCases),greenClass);
+        countryInfoText += getListItem('Critial ('+getPercentage(criticalCases,totalCases,2)+')',betterNumbers(criticalCases),greenClass);
+
+
+        
+
         countryInfoText += '</ul>';
         countryInfoText += '</div>';
         countryInfoText += '<div class="col">';
         countryInfoText += '<ul class="list-group">';
-        countryInfoText += getListItem('Total tests','N/A',lightClass);
-        countryInfoText += getListItem('Negative tests','N/A',lightClass);
+        countryInfoText += getListItem('Today cases',betterNumbers(todayCases),lightClass);
+        countryInfoText += getListItem('Today deaths',betterNumbers(todayDeaths),lightClass);
+        countryInfoText += getListItem('Total tests',betterNumbers(totalTests),lightClass);
+        countryInfoText += getListItem('Positive tests ('+getPercentage(totalCases,totalTests,2)+')',betterNumbers(totalCases),lightClass);
+        countryInfoText += getListItem('Negative tests ('+getPercentage(negativeTests,totalTests,2)+')',betterNumbers(negativeTests),lightClass);
+        countryInfoText += getListItem('Cases per 1M',betterNumbers(casesPerOneMillion),lightClass);
+        countryInfoText += getListItem('Deaths per 1M',betterNumbers(deathsPerOneMillion),lightClass);
         countryInfoText += '</ul>';
         countryInfoText += '</div>';
         countryInfoText += '</div>';
@@ -83,7 +104,19 @@ function getCountryInfo() {
 
         var countryInfoText = '';
         countryInfoText += 'Population: ' + betterNumbers(population);
-        replaceInside(countryInfoText,'countryInfo');
+
+        getDataCovid('today', chosenCountry).then(d => {
+            var totalCases = d.cases;
+
+            countryInfoText += '<br>'
+            countryInfoText += 'Cases: ' + betterNumbers(totalCases);
+
+            countryInfoText += '<br>'
+            countryInfoText += 'Percentage: ' + getPercentage(totalCases,population,4);
+
+            replaceInside(countryInfoText,'countryInfo');
+        });
+        
 
     });
 

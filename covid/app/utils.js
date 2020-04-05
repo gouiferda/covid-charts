@@ -1,4 +1,5 @@
 function betterNumbers(x) {
+    if (parseInt(x) < 0) return 'N/A';
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
@@ -76,7 +77,8 @@ function hexToRgb(hex) {
 }
 
 
-function getPercentage(nb, total) {
+function getPercentage(nb, total, ad=2) {
+    if (total <= 0) return 'X%';
     var result = (parseInt(nb) * 100) / parseInt(total);
-    return result.toFixed(2);
+    return result.toFixed(ad)+'%';
 }
