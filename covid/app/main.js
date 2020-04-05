@@ -52,9 +52,9 @@ function getTodayChart() {
         countryInfoText += '<div class="col">';
         countryInfoText += '<ul class="list-group">';
         countryInfoText += getListItem('Total positive cases',betterNumbers(totalCases),darkClass);
-        countryInfoText += getListItem('Active cases',betterNumbers(activeCases),orangeClass);
-        countryInfoText += getListItem('Deaths',betterNumbers(deathsCases),redClass);
-        countryInfoText += getListItem('Recovered',betterNumbers(recoveredCases),greenClass);
+        countryInfoText += getListItem('Active cases ('+getPercentage(activeCases,totalCases)+'%)',betterNumbers(activeCases),orangeClass);
+        countryInfoText += getListItem('Deaths ('+getPercentage(deathsCases,totalCases)+'%)',betterNumbers(deathsCases),redClass);
+        countryInfoText += getListItem('Recovered ('+getPercentage(recoveredCases,totalCases)+'%)',betterNumbers(recoveredCases),greenClass);
         countryInfoText += '</ul>';
         countryInfoText += '</div>';
         countryInfoText += '<div class="col">';
