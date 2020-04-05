@@ -37,25 +37,7 @@
         </div>
 
         <div class="mt-0"></div>
-        <p class="text-right">
-            <b>Data updated at:</b>
-            <br><span id='updated'></span>
-            <br>
-            <b>Data sources:</b>
-            <br>
-            Non-Official:
-            <a href="https://github.com/novelcovid/api">novelcovid</a>
-            <a href="https://restcountries.eu">restcountries</a>
-            <br>
-            Official:
-            <a href="http://www.covidmaroc.ma/">covidmaroc</a>
-            <br>
-            <b>Created by:</b>
-            <br>
-            <a href="https://twitter.com/notsoufiane" target="_blank">@notsoufiane</a>
-            <br><br>
-            <img class="rounded" id="btnTheme" style="width:30px;height:30px;" onclick="setTheme('dark');" src="assets/img/dark.png" />
-        </p>
+        
     </div>
 
     <div class="container">
@@ -69,49 +51,99 @@
                                 <h5 class="card-title">
                                     <span id="countryName"></span>
                                 </h5>
+
                                 <p class="card-text">
                                     <span id="countryInfo"></span>
-                                    <span id="countryStats"></span>
                                 </p>
                             </div>
                         </div>
-
                         <div class="mt-3"></div>
                     </div>
                     <div class="col-sm-12 col-lg-8">
                         <div class="card">
                             <div class="card-header">
-                                Pie chart
+                                Covid-19 statistiques
                             </div>
                             <div class="card-body">
-                                <canvas id="canvasPie"></canvas>
+                                <p class="card-text">
+                                    <span id="countryStats"></span>
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-12">
+            <div class="col-sm-12 col-lg-12">
                 <div class="mt-3"></div>
                 <div class="card">
                     <div class="card-header">
-                        Linear chart (zoomable)
+                        To date
+                    </div>
+                    <div class="card-body">
+                        <canvas id="canvasPie"></canvas>
+                    </div>
+                </div>
+                <div class="mt-3"></div>
+            </div>
+            <div class="col-sm-12 col-lg-12">
+                <div class="mt-3"></div>
+                <div class="card">
+                    <div class="card-header">
+                        History (zoomable)
                     </div>
                     <div class="card-body">
                         <canvas id="canvasLine"></canvas>
                     </div>
                 </div>
-
                 <div class="mt-3"></div>
             </div>
         </div>
+
+        <footer class="pt-4 my-md-5 pt-md-5 border-top">
+            <div class="row">
+              <div class="col-12 col-md">
+                <img class="mb-2" id="btnTheme"  onclick="setTheme('dark');"
+                    src="assets/img/dark.png" width="30" height="30"/> 
+
+                <small class="d-block mb-3 text-muted">gouiferda &copy; 2020</small>
+              </div>
+
+              <div class="col-6 col-md">
+                <h5>Updated at</h5>
+                <ul class="list-unstyled text-small">
+                  <li> <span id='updated'></span></li>
+                </ul>
+              </div>
+              <div class="col-6 col-md">
+                <h5>Data sources</h5>
+                <ul class="list-unstyled text-small">
+                  <li><a class="text-muted" href="https://github.com/novelcovid/api" target="_blank">Novelcovid</a></li>
+                  <li><a class="text-muted" href="https://restcountries.eu" target="_blank">Restcountries</a></li>
+                  <li><a class="text-muted" href="http://www.covidmaroc.ma/" target="_blank">Covidmaroc</a></li>
+                </ul>
+              </div>
+              <div class="col-6 col-md">
+                <h5>About</h5>
+                <ul class="list-unstyled text-small">
+                  <li><a class="text-muted" href="https://github.com/gouiferda/gouiferda.github.io/tree/master/covid" target="_blank">Project</a></li>
+                  <li><a class="text-muted" href="https://gouiferda.github.io/" target="_blank">Portfolio</a></li>
+                  <li><a class="text-muted" href="https://github.com/gouiferda" target="_blank">Github</a></li>
+                  <li><a class="text-muted" href="https://twitter.com/notsoufiane" target="_blank">Twitter</a></li>
+                </ul>
+              </div>
+            </div>
+          </footer>
+
     </div>
 
-    <script src="app/utils.js"> </script>
-    <script src="app/charts.js"> </script>
-    <script src="app/data.js"> </script>
-    <script src="app/main.js"> </script>
-    <script src="app/init.js"> </script>
+                
+   
 
+      <script src="app/utils.js"> </script>
+      <script src="app/charts.js"> </script>
+      <script src="app/data.js"> </script>
+      <script src="app/main.js"> </script>
+      <script src="app/init.js"> </script>
 </body>
 
 </html>
