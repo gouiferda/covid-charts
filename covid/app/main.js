@@ -6,11 +6,10 @@ function setCountry(val) {
     getHistoryChart();
     getTodayChart();
 
-getCountryInfo();
+    getCountryInfo();
 }
 
-function getListItem(text,nb,className)
-{
+function getListItem(text, nb, className) {
     var ret = '';
     ret += '<li class="list-group-item d-flex justify-content-between align-items-center">';
     ret += text;
@@ -25,8 +24,8 @@ function getListItem(text,nb,className)
 function getTodayChart() {
     getDataCovid('today', chosenCountry).then(data => {
 
-        drawChart('today',data,'canvasPie');
-        
+        drawChart('today', data, 'canvasPie');
+
         var updated = document.getElementById('updated');
         updated.innerHTML = getDate(data.updated);
 
@@ -48,8 +47,7 @@ function getTodayChart() {
 
         var criticalCases = parseInt(data.critical);
 
-        var casesPerOneMillion = parseInt(data.casesPerOneMillion);
-        var deathsPerOneMillion = parseInt(data.deathsPerOneMillion);
+
 
 
         var countryInfoText = '';
@@ -61,35 +59,40 @@ function getTodayChart() {
         var lightClass = ' light';
 
         countryInfoText += '<div class="row">';
+
         countryInfoText += '<div class="col">';
         countryInfoText += '<ul class="list-group">';
-        countryInfoText += getListItem('Total cases',betterNumbers(totalCases),darkClass);
-        countryInfoText += getListItem('Active cases ('+getPercentage(activeCases,totalCases,2)+')',betterNumbers(activeCases),orangeClass);
-        countryInfoText += getListItem('Deaths ('+getPercentage(deathsCases,totalCases,2)+')',betterNumbers(deathsCases),redClass);
-        countryInfoText += getListItem('Recovered ('+getPercentage(recoveredCases,totalCases,2)+')',betterNumbers(recoveredCases),greenClass);
-        countryInfoText += getListItem('Critial ('+getPercentage(criticalCases,totalCases,2)+')',betterNumbers(criticalCases),greenClass);
-
-
-        
-
+        countryInfoText += getListItem('Today cases', betterNumbers(todayCases), lightClass);
+        countryInfoText += getListItem('Today deaths', betterNumbers(todayDeaths), lightClass);
         countryInfoText += '</ul>';
         countryInfoText += '</div>';
+
         countryInfoText += '<div class="col">';
         countryInfoText += '<ul class="list-group">';
-        countryInfoText += getListItem('Today cases',betterNumbers(todayCases),lightClass);
-        countryInfoText += getListItem('Today deaths',betterNumbers(todayDeaths),lightClass);
-        countryInfoText += getListItem('Total tests',betterNumbers(totalTests),lightClass);
-        countryInfoText += getListItem('Positive tests ('+getPercentage(totalCases,totalTests,2)+')',betterNumbers(totalCases),lightClass);
-        countryInfoText += getListItem('Negative tests ('+getPercentage(negativeTests,totalTests,2)+')',betterNumbers(negativeTests),lightClass);
-        countryInfoText += getListItem('Cases per 1M',betterNumbers(casesPerOneMillion),lightClass);
-        countryInfoText += getListItem('Deaths per 1M',betterNumbers(deathsPerOneMillion),lightClass);
+        countryInfoText += getListItem('Total tests', betterNumbers(totalTests), lightClass);
+        countryInfoText += getListItem('Positive tests (' + getPercentage(totalCases, totalTests, 2) + ')', betterNumbers(totalCases), lightClass);
+        countryInfoText += getListItem('Negative tests (' + getPercentage(negativeTests, totalTests, 2) + ')', betterNumbers(negativeTests), lightClass);
         countryInfoText += '</ul>';
         countryInfoText += '</div>';
+
+
+        countryInfoText += '<div class="col">';
+        countryInfoText += '<ul class="list-group">';
+        countryInfoText += getListItem('Total cases', betterNumbers(totalCases), darkClass);
+        countryInfoText += getListItem('Active cases (' + getPercentage(activeCases, totalCases, 2) + ')', betterNumbers(activeCases), orangeClass);
+        countryInfoText += getListItem('Deaths (' + getPercentage(deathsCases, totalCases, 2) + ')', betterNumbers(deathsCases), redClass);
+        countryInfoText += getListItem('Recovered (' + getPercentage(recoveredCases, totalCases, 2) + ')', betterNumbers(recoveredCases), greenClass);
+        countryInfoText += getListItem('Critial (' + getPercentage(criticalCases, totalCases, 2) + ')', betterNumbers(criticalCases), greenClass);
+        countryInfoText += '</ul>';
         countryInfoText += '</div>';
 
 
-        replaceInside(countryInfoText,'countryStats');
-        
+
+        countryInfoText += '</div>';
+
+
+        replaceInside(countryInfoText, 'countryStats');
+
 
     });
 
@@ -103,20 +106,24 @@ function getCountryInfo() {
         var population = data[0].population;
 
         var countryInfoText = '';
-        countryInfoText += 'Population: ' + betterNumbers(population);
 
         getDataCovid('today', chosenCountry).then(d => {
             var totalCases = d.cases;
+            var casesPerOneMillion = parseInt(d.casesPerOneMillion);
+            var deathsPerOneMillion = parseInt(d.deathsPerOneMillion);
 
-            countryInfoText += '<br>'
-            countryInfoText += 'Cases: ' + betterNumbers(totalCases);
+            countryInfoText += '<ul class="list-group">';
+            countryInfoText += getListItem('Population', betterNumbers(population), '');
+            countryInfoText += getListItem('Cases', betterNumbers(totalCases), '');
+            countryInfoText += getListItem('Percentage', getPercentage(totalCases, population, 4), '');
+            countryInfoText += getListItem('Cases per 1M', betterNumbers(casesPerOneMillion), '');
+            countryInfoText += getListItem('Deaths per 1M', betterNumbers(deathsPerOneMillion), '');
+            countryInfoText += '</ul>';
 
-            countryInfoText += '<br>'
-            countryInfoText += 'Percentage: ' + getPercentage(totalCases,population,4);
 
-            replaceInside(countryInfoText,'countryInfo');
+            replaceInside(countryInfoText, 'countryInfo');
         });
-        
+
 
     });
 
@@ -125,6 +132,6 @@ function getCountryInfo() {
 
 function getHistoryChart() {
     getDataCovid('history', chosenCountry).then(data => {
-        drawChart('history',data,'canvasLine');
+        drawChart('history', data, 'canvasLine');
     });
 }

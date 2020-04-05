@@ -57,7 +57,7 @@ function setTheme(theme) {
             isDarkTheme = true;
             break;
         case 'light':
-            linkTheme.href = "assets/css/bootstrap.min.css";
+            linkTheme.href = "assets/css/yeti.min.css";
             btn.src = 'assets/img/dark.png';
             btn.addEventListener('click', function () {
                 setTheme('dark')
