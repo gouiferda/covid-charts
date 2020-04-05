@@ -91,7 +91,7 @@ function getPieChartConfig(dataGot,labelsGot,titleGot)
         },
         options: {
             responsive: true,
-           // cutoutPercentage: 50,
+            cutoutPercentage: 50,
             legend: {
                 labels: {
                     fontColor: "grey",
