@@ -5,7 +5,19 @@ function betterNumbers(x) {
 
 function getDate(unix_timestamp) {
     var date = new Date(unix_timestamp);
-    return date.toLocaleString();
+    var dd = date.getDate();
+
+    var mm = date.getMonth() + 1;
+    var yyyy = date.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+    var fullDate = yyyy + '-' + mm + '-' + dd;
+    var fullTime = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+    return fullDate+' '+fullTime;
 }
 
 function ucf(string) {
@@ -31,22 +43,22 @@ async function getJSONData(apiLink) {
 }
 
 function setTheme(theme) {
-console.log('theme:'+theme);
-    var btn = document.getElementById('btnTheme'); 
-    var linkTheme = document.getElementById('linkTheme'); 
+    console.log('theme:' + theme);
+    var btn = document.getElementById('btnTheme');
+    var linkTheme = document.getElementById('linkTheme');
     switch (theme) {
         case 'dark':
             linkTheme.href = "assets/css/dark.min.css";
-            btn.src='assets/img/light.png';
-            btn.addEventListener('click', function() {
+            btn.src = 'assets/img/light.png';
+            btn.addEventListener('click', function () {
                 setTheme('light')
             }, false);
             isDarkTheme = true;
             break;
         case 'light':
             linkTheme.href = "assets/css/bootstrap.min.css";
-            btn.src='assets/img/dark.png';
-            btn.addEventListener('click', function() {
+            btn.src = 'assets/img/dark.png';
+            btn.addEventListener('click', function () {
                 setTheme('dark')
             }, false);
             isDarkTheme = false;
@@ -57,15 +69,14 @@ console.log('theme:'+theme);
 function hexToRgb(hex) {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result ? {
-      r: parseInt(result[1], 16),
-      g: parseInt(result[2], 16),
-      b: parseInt(result[3], 16)
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
     } : null;
-  }
-  
+}
 
-  function getPercentage(nb,total) {
+
+function getPercentage(nb, total) {
     var result = (parseInt(nb) * 100) / parseInt(total);
     return result.toFixed(2);
-  }
-  
+}
