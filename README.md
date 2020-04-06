@@ -3,7 +3,7 @@
 
 Visual representation of covid-19 data around the world
 
-[Live preview](https://gouiferda.github.io/covid)
+[Live preview](https://gouiferda.github.io/covid-charts/)
 
 ### Features
 
