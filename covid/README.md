@@ -11,5 +11,5 @@ Updated covid-19 data, Multiple countries, Countries data, Interactive charts, D
 
 ### Screenshots
 
-![Image](https://i.imgur.com/MEI6t99.png)
+![Image](https://i.imgur.com/JeKfJTL.png)
 
