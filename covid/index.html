@@ -5,7 +5,7 @@
     <title>Covid chart</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" id="linkTheme" href="assets/css/yeti.min.css">
+    <link rel="stylesheet" id="linkTheme" href="assets/css/dark.min.css">
     <link rel="stylesheet" href="assets/css/custom.css">
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
@@ -77,10 +77,10 @@
                 <div class="mt-3"></div>
                 <div class="card">
                     <div class="card-header text-center">
-                        History of cases (zoomable)
+                        History of cases
                     </div>
                     <div class="card-body">
-                        <canvas id="canvasLine"></canvas>
+                        <canvas id="historyCasesChart"></canvas>
                     </div>
                 </div>
                 <div class="mt-3"></div>
@@ -88,7 +88,19 @@
             <div class="col-sm-12 col-lg-12">
                 <div class="mt-3"></div>
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header text-center">
+                        History of new cases
+                    </div>
+                    <div class="card-body">
+                        <canvas id="historyNewCasesChart"></canvas>
+                    </div>
+                </div>
+                <div class="mt-3"></div>
+            </div>
+            <div class="col-sm-12 col-lg-12">
+                <div class="mt-3"></div>
+                <div class="card">
+                    <div class="card-header text-center">
                         Total cases to date
                     </div>
                     <div class="card-body">
@@ -102,9 +114,6 @@
         <footer class="pt-4 my-md-5 pt-md-5 border-top">
             <div class="row">
               <div class="col-12 col-md">
-                <img class="mb-2" id="btnTheme"  onclick="setTheme('dark');"
-                    src="assets/img/dark.png" width="30" height="30"/> 
-
                 <small class="d-block mb-3 text-muted">gouiferda &copy; 2020</small>
               </div>
 
@@ -134,14 +143,10 @@
 
     </div>
 
-                
-   
-
       <script src="app/utils.js"> </script>
       <script src="app/charts.js"> </script>
       <script src="app/data.js"> </script>
       <script src="app/main.js"> </script>
-      <script src="app/init.js"> </script>
 </body>
 
 </html>

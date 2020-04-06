@@ -26,11 +26,11 @@ function getLineChartConfig(labelsGot,titleGot,datasetsGot)
                     fontSize: 18
                 }
             },
-            title: {
-                display: true,
-                text: titleGot,
-                fontSize: 18
-            },
+            // title: {
+            //     display: true,
+            //     text: titleGot,
+            //     fontSize: 18
+            // },
             tooltips: {
                 mode: 'index',
                 intersect: false,
@@ -93,6 +93,7 @@ function getPieChartConfig(dataGot,labelsGot,titleGot)
             responsive: true,
             cutoutPercentage: 50,
             legend: {
+                display: false,
                 labels: {
                     fontColor: "grey",
                     fontSize: 15
@@ -166,7 +167,7 @@ function drawChart(chartType, data, canvasId) {
         if (window.myPie) window.myPie.destroy();
         window.myPie = new Chart(ctx, configPie);
     }
-    else if(chartType == 'history')
+    else if(chartType == 'historyCases')
     {
         var deathCases = Object.values(data.timeline.deaths);
         var recoveredCases = Object.values(data.timeline.recovered);
@@ -180,17 +181,6 @@ function drawChart(chartType, data, canvasId) {
             // console.log(currentActiveCase);
             activeCases.push(currentActiveCase);
         }
-
-        var newCases = [];
-        var prevDayTotalCases = 0;
-        var newCasesThatDay = 0;
-        for (var i = 0; i < totalCases.length; i++) {
-            newCasesThatDay = parseInt(totalCases[i]) - prevDayTotalCases;
-            // console.log(currentActiveCase);
-            newCases.push(newCasesThatDay);
-            prevDayTotalCases = parseInt(totalCases[i]);
-        }
-
 
         var configLine = getLineChartConfig(
             Object.keys(data.timeline.cases),
@@ -223,18 +213,101 @@ function drawChart(chartType, data, canvasId) {
                     borderColor: window.chartColors.green,
                     data: recoveredCases, //
                     fill: false,
-                },
+                }
+            ],
+
+        );
+        if (window.historyCases) window.historyCases.destroy();
+        window.historyCases = new Chart(ctx, configLine);
+    }
+    else if(chartType == 'historyNewCases')
+    {
+        var deathCases = Object.values(data.timeline.deaths);
+        var recoveredCases = Object.values(data.timeline.recovered);
+
+        var activeCases = [];
+        var totalCases = Object.values(data.timeline.cases);
+
+        var currentActiveCase = 0;
+        for (var i = 0; i < totalCases.length; i++) {
+            currentActiveCase = parseInt(totalCases[i]) - (parseInt(recoveredCases[i]) + parseInt(deathCases[i]));
+            // console.log(currentActiveCase);
+            activeCases.push(currentActiveCase);
+        }
+
+        var newCases = [];
+        var prevDayTotalCases = 0;
+        var newCasesThatDay = 0;
+        for (var i = 0; i < totalCases.length; i++) {
+            newCasesThatDay = parseInt(totalCases[i]) - prevDayTotalCases;
+            newCases.push(newCasesThatDay);
+            prevDayTotalCases = parseInt(totalCases[i]);
+        }
+
+        var newActiveCases = [];
+        var prevDayTotalActiveCases = 0;
+        var newActiveCasesThatDay = 0;
+        for (var i = 0; i < activeCases.length; i++) {
+            newActiveCasesThatDay = parseInt(activeCases[i]) - prevDayTotalActiveCases;
+            newActiveCases.push(newActiveCasesThatDay);
+            prevDayTotalActiveCases = parseInt(activeCases[i]);
+        }
+
+        var newDeaths = [];
+        var prevDayTotalDeaths = 0;
+        var newDeathsThatDay = 0;
+        for (var i = 0; i < deathCases.length; i++) {
+            newDeathsThatDay = parseInt(deathCases[i]) - prevDayTotalDeaths;
+            newDeaths.push(newDeathsThatDay);
+            prevDayTotalDeaths = parseInt(deathCases[i]);
+        }
+
+        var newRecovered = [];
+        var prevDayTotalRecovered = 0;
+        var newRecoveredThatDay = 0;
+        for (var i = 0; i < recoveredCases.length; i++) {
+            newRecoveredThatDay = parseInt(recoveredCases[i]) - prevDayTotalRecovered;
+            newRecovered.push(newRecoveredThatDay);
+            prevDayTotalRecovered = parseInt(recoveredCases[i]);
+        }
+
+
+        var configLine = getLineChartConfig(
+            Object.keys(data.timeline.cases),
+            'Progress of cases',
+            [
                 {
                     label: 'New cases',
+                    backgroundColor: window.chartColors.blue,
+                    borderColor: window.chartColors.blue,
+                    data: newCases,
+                    fill: false,
+                },
+                {
+                    label: 'New active cases',
                     backgroundColor: window.chartColors.yellow,
                     borderColor: window.chartColors.yellow,
-                    data: newCases, //
+                    data: newActiveCases,
+                    fill: false,
+                },
+                {
+                    label: 'New deaths',
+                    backgroundColor: window.chartColors.red,
+                    borderColor: window.chartColors.red,
+                    data: newDeaths,
+                    fill: false,
+                },
+                {
+                    label: 'New recovered',
+                    backgroundColor: window.chartColors.green,
+                    borderColor: window.chartColors.green,
+                    data: newRecovered,
                     fill: false,
                 }
             ],
 
         );
-        if (window.myLine) window.myLine.destroy();
-        window.myLine = new Chart(ctx, configLine);
+        if (window.historyNewCases) window.historyNewCases.destroy();
+        window.historyNewCases = new Chart(ctx, configLine);
     }
 }

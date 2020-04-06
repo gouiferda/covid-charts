@@ -3,9 +3,8 @@
 function setCountry(val) {
     chosenCountry = val;
 
-    getHistoryChart();
+    gethistoryCasesChart();
     getTodayChart();
-
     getCountryInfo();
 }
 
@@ -87,7 +86,6 @@ function getTodayChart() {
         countryInfoText += '</div>';
 
 
-
         countryInfoText += '</div>';
 
 
@@ -130,8 +128,50 @@ function getCountryInfo() {
 }
 
 
-function getHistoryChart() {
+function gethistoryCasesChart() {
     getDataCovid('history', chosenCountry).then(data => {
-        drawChart('history', data, 'canvasLine');
+        drawChart('historyCases', data, 'historyCasesChart');
     });
 }
+
+
+function gethistoryNewCasesChart() {
+    getDataCovid('history', chosenCountry).then(data => {
+        drawChart('historyNewCases', data, 'historyNewCasesChart');
+    });
+}
+
+
+var citiesArr = [
+    "morocco",
+    "china",
+    "france",
+    "italy",
+    "spain",
+    "germany",
+    "algeria",
+    "usa",
+    "iran",
+    "japan",
+    "uk",
+    "korea",
+    "switzerland"
+];
+
+
+var selectCountry = document.getElementById('selectCountry');
+for (var i = 0; i < citiesArr.length; i++) {
+    var option = document.createElement("option");
+    option.text = ucf(citiesArr[i]);
+    option.value = citiesArr[i];
+    if (citiesArr[i] == 'morocco')
+        option.selected = 'selected';
+    selectCountry.appendChild(option);
+}
+
+var isDarkTheme = false;
+var chosenCountry = 'morocco';
+gethistoryCasesChart();
+gethistoryNewCasesChart();
+getTodayChart();
+getCountryInfo();
