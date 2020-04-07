@@ -1,4 +1,5 @@
-
+var isDarkTheme = false;
+var chosenCountry = 'morocco';
 
 function setCountry(val) {
     chosenCountry = val;
@@ -6,6 +7,16 @@ function setCountry(val) {
     gethistoryCasesChart();
     getTodayChart();
     getCountryInfo();
+    setCountryName(val);
+}
+
+function setCountryName(val) {
+    var countryName = ucf(val);
+    var elements = document.getElementsByClassName("countryName");
+    var names = '';
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].innerHTML = countryName;
+    }
 }
 
 function getListItem(text, nb, className) {
@@ -169,8 +180,7 @@ for (var i = 0; i < citiesArr.length; i++) {
     selectCountry.appendChild(option);
 }
 
-var isDarkTheme = false;
-var chosenCountry = 'morocco';
+
 gethistoryCasesChart();
 gethistoryNewCasesChart();
 getTodayChart();
