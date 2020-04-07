@@ -1,5 +1,9 @@
 var isDarkTheme = false;
 var chosenCountry = 'morocco';
+gethistoryCasesChart();
+gethistoryNewCasesChart();
+getTodayChart();
+getCountryInfo();
 
 function setCountry(val) {
     chosenCountry = val;
@@ -181,7 +185,3 @@ for (var i = 0; i < citiesArr.length; i++) {
 }
 
 
-gethistoryCasesChart();
-gethistoryNewCasesChart();
-getTodayChart();
-getCountryInfo();
