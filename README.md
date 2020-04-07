@@ -7,7 +7,6 @@ Front end app to visual covid-19 data around the world, made with javascript and
 
 ### Features
 
-
 - covid-19 daily data
 - covid-19 historical data
 - responsive
