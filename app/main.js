@@ -37,7 +37,7 @@ for (var i = 0; i < citiesArr.length; i++) {
 
 var loadingTxt = '<p class="text-center">Loading...</p>';
 
-var loadingImgSrc = 'assets/img/loading.gif';
+var loadingImgSrc = 'assets/img/gifs/placeholder.gif';
 
 var isDarkTheme = false;
 var chosenCountry = 'morocco';
@@ -51,6 +51,7 @@ function setCountry(val) {
 
     getHistoryAndNewCasesCharts();
     getTodayCasesAndCountryData();
+    setChartLoading(loadingTxt);
     setCountryName(chosenCountry);
 }
 

@@ -38,6 +38,8 @@ function replaceInside(txt, id) {
 function replaceImg(src, id) {
     var elem = document.getElementById(id);
     elem.src = src;
+    // elem.style.height = '50px';
+    // elem.style.width = '50px';
 }
 
 async function getJSONData(apiLink) {
