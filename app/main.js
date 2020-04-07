@@ -1,4 +1,19 @@
 
+// function findGetParameter(parameterName) {
+//     var result = null,
+//         tmp = [];
+//     location.search
+//         .substr(1)
+//         .split("&")
+//         .forEach(function (item) {
+//           tmp = item.split("=");
+//           if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+//         });
+//     return result;
+// }
+// console.log(window.location.search.substr(1));
+// console.log(findGetParameter('id'));
+
 var citiesArr = [
     "morocco",
     "china",
@@ -88,6 +103,10 @@ function getListItem(text, nb, className) {
 }
 
 function showTodayStats(data, elemId) {
+
+    if (!issetObj(data) || !issetElem(elemId)) return;
+
+    
     replaceInside(getDate(data.updated), 'updated');
 
     replaceImg(data.countryInfo.flag, 'countryImg');
@@ -151,9 +170,11 @@ function showTodayStats(data, elemId) {
 }
 
 function showCountryInfoAndData(data, elemId) {
+    if (!issetObj(data) || !issetElem(elemId)) return;
 
     getDataCountry(chosenCountry).then(d => {
 
+        if (!issetObj(d)) return;
 
         var population = d[0].population;
         var totalCases = parseInt(data.cases);
