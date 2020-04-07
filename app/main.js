@@ -22,6 +22,7 @@ var citiesArr = [
     "netherlands",
     "canada",
     "russia",
+    "portugal"
 ];
 
 var selectCountry = document.getElementById('selectCountry');
