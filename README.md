@@ -16,6 +16,7 @@ Visual representation of covid-19 data around the world
 ### Soon
 
 - multi language
+- search for a country box
 - more countries
 - worldwide map
 - progression chart

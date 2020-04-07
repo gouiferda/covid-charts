@@ -133,12 +133,6 @@ function showTodayStats(data, elemId) {
 
     countryInfoText += '<div class="row">';
 
-    countryInfoText += '<div class="col">';
-    countryInfoText += '<ul class="list-group">';
-    countryInfoText += getListItem('Today cases', betterNumbers(todayCases), lightClass);
-    countryInfoText += getListItem('Today deaths', betterNumbers(todayDeaths), lightClass);
-    countryInfoText += '</ul>';
-    countryInfoText += '</div>';
 
     countryInfoText += '<div class="col">';
     countryInfoText += '<ul class="list-group">';
@@ -151,6 +145,8 @@ function showTodayStats(data, elemId) {
 
     countryInfoText += '<div class="col">';
     countryInfoText += '<ul class="list-group">';
+    countryInfoText += getListItem('Today cases', betterNumbers(todayCases), lightClass);
+    countryInfoText += getListItem('Today deaths', betterNumbers(todayDeaths), lightClass);
     countryInfoText += getListItem('Total cases', betterNumbers(totalCases), secClass);
     countryInfoText += getListItem('Active cases (' + getPercentage(activeCases, totalCases, 2) + ')', betterNumbers(activeCases), orangeClass);
     countryInfoText += getListItem('Deaths (' + getPercentage(deathsCases, totalCases, 2) + ')', betterNumbers(deathsCases), redClass);
@@ -180,7 +176,7 @@ function showCountryInfoAndData(data, elemId) {
 
         countryInfoText2 += '<ul class="list-group">';
         countryInfoText2 += getListItem('Population', betterNumbers(population), '');
-        countryInfoText2 += getListItem('Cases', betterNumbers(totalCases), '');
+        countryInfoText2 += getListItem('Cases', betterNumbers(totalCases), 'secondary');
         countryInfoText2 += getListItem('Percentage', getPercentage(totalCases, population, 4), '');
         countryInfoText2 += getListItem('Cases per 1M', betterNumbers(casesPerOneMillion), '');
         countryInfoText2 += getListItem('Deaths per 1M', betterNumbers(deathsPerOneMillion), '');
