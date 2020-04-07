@@ -35,6 +35,11 @@ function replaceInside(txt, id) {
     elem.innerHTML = txt;
 }
 
+function replaceImg(src, id) {
+    var elem = document.getElementById(id);
+    elem.src = src;
+}
+
 async function getJSONData(apiLink) {
     // await response of fetch call
     let response = await fetch(apiLink);
