@@ -67,12 +67,31 @@ function getPercentage(nb, total, ad = 2) {
     return result.toFixed(ad) + '%';
 }
 
-function issetObj(val)
-{
+function issetObj(val) {
     return (val != null && (typeof val !== 'undefined'));
 }
 
-function issetElem(elemId)
-{
+function issetElem(elemId) {
     return issetObj(document.getElementById(elemId));
+}
+
+
+function selectElement(id, valueToSelect) {
+    let element = document.getElementById(id);
+    element.value = valueToSelect;
+}
+
+
+
+function findGetParameter(parameterName) {
+    var result = null,
+        tmp = [];
+    window.location.search
+        .substr(1)
+        .split("&")
+        .forEach(function (item) {
+            tmp = item.split("=");
+            if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+        });
+    return result;
 }

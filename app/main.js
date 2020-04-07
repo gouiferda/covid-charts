@@ -1,18 +1,9 @@
 
-// function findGetParameter(parameterName) {
-//     var result = null,
-//         tmp = [];
-//     location.search
-//         .substr(1)
-//         .split("&")
-//         .forEach(function (item) {
-//           tmp = item.split("=");
-//           if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
-//         });
-//     return result;
-// }
-// console.log(window.location.search.substr(1));
-// console.log(findGetParameter('id'));
+
+
+var loadingTxt = '<p class="text-center">Loading...</p>';
+var loadingImgSrc = 'assets/img/gifs/placeholder.gif';
+
 
 var citiesArr = [
     "morocco",
@@ -40,6 +31,19 @@ var citiesArr = [
     "portugal"
 ];
 
+
+var gotCountry = findGetParameter('country');
+if (!(citiesArr.includes(gotCountry))) gotCountry = null;
+
+//var gotLang = findGetParameter('lang');
+
+
+var chosenCountry = (gotCountry != null) ? gotCountry : 'morocco';
+getHistoryAndNewCasesCharts();
+getTodayCasesAndCountryData();
+setChartLoading(loadingTxt);
+setCountryName(chosenCountry);
+
 var selectCountry = document.getElementById('selectCountry');
 for (var i = 0; i < citiesArr.length; i++) {
     var option = document.createElement("option");
@@ -50,16 +54,7 @@ for (var i = 0; i < citiesArr.length; i++) {
     selectCountry.appendChild(option);
 }
 
-var loadingTxt = '<p class="text-center">Loading...</p>';
-
-var loadingImgSrc = 'assets/img/gifs/placeholder.gif';
-
-var isDarkTheme = false;
-var chosenCountry = 'morocco';
-getHistoryAndNewCasesCharts();
-getTodayCasesAndCountryData();
-setChartLoading(loadingTxt);
-setCountryName(chosenCountry);
+selectElement('selectCountry',chosenCountry);
 
 function setCountry(val) {
     chosenCountry = val;
