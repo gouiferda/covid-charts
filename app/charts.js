@@ -143,7 +143,9 @@ function getPieChartConfig(dataGot, labelsGot, titleGot) {
                         position: 'outside',
                         fontColor: function (data) {
                             return 'white';
-                        }, arc: true,
+                        }, 
+                        //arc: true,
+                        textMargin: 10,
                     },
                     {
                         render: 'percentage',
