@@ -10,8 +10,7 @@ window.chartColors = {
     grey: 'rgb(201, 203, 207)'
 };
 
-function getLineChartConfig(labelsGot,titleGot,datasetsGot)
-{
+function getLineChartConfig(labelsGot, titleGot, datasetsGot) {
     var configLine = {
         type: 'line',
         data: {
@@ -22,8 +21,8 @@ function getLineChartConfig(labelsGot,titleGot,datasetsGot)
             responsive: true,
             legend: {
                 labels: {
-                    fontColor: "grey",
-                    fontSize: 18
+                    fontColor: "white",
+                    fontSize: 14
                 }
             },
             // title: {
@@ -55,6 +54,22 @@ function getLineChartConfig(labelsGot,titleGot,datasetsGot)
                     }
                 }]
             },
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        fontColor: "white",
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        fontColor: "white",
+                        //   beginAtZero: true,
+                        //   maxTicksLimit: 5,
+                        //   stepSize: Math.ceil(250 / 5),
+                        //   max: 250
+                    }
+                }]
+            },
             plugins: {
                 zoom: {
                     pan: {
@@ -73,8 +88,7 @@ function getLineChartConfig(labelsGot,titleGot,datasetsGot)
 
 }
 
-function getPieChartConfig(dataGot,labelsGot,titleGot)
-{
+function getPieChartConfig(dataGot, labelsGot, titleGot) {
     var configPie = {
         type: 'pie',
         data: {
@@ -85,7 +99,7 @@ function getPieChartConfig(dataGot,labelsGot,titleGot)
                     window.chartColors.green,
                     window.chartColors.red
                 ],
-                label: titleGot
+                //label: titleGot
             }],
             labels: labelsGot
         },
@@ -95,14 +109,15 @@ function getPieChartConfig(dataGot,labelsGot,titleGot)
             legend: {
                 display: false,
                 labels: {
-                    fontColor: "grey",
-                    fontSize: 15
+                    fontColor: "white",
+                    fontSize: 14
                 }
             },
             title: {
                 display: true,
                 text: titleGot,
-                fontSize: 18
+                fontSize: 14,
+                fontColor: "white",
             },
             tooltips: {
                 callbacks: {
@@ -122,26 +137,25 @@ function getPieChartConfig(dataGot,labelsGot,titleGot)
                 }
             },
             plugins: {
-                
                 labels: [
                     {
-                      render: 'label',
-                      position: 'outside',
-                      fontColor:  function (data) {
-                        return 'grey';
-                      },
+                        render: 'label',
+                        position: 'outside',
+                        fontColor: function (data) {
+                            return 'white';
+                        },
                     },
                     {
                         render: 'percentage',
-                        fontColor:  function (data) {
-                          return 'white';
+                        fontColor: function (data) {
+                            return 'white';
                         },
                         precision: 2
-                      }
-                  ]
-                  
-                  
-              },
+                    }
+                ]
+
+
+            },
         }
     };
     return configPie;
@@ -167,8 +181,7 @@ function drawChart(chartType, data, canvasId) {
         if (window.myPie) window.myPie.destroy();
         window.myPie = new Chart(ctx, configPie);
     }
-    else if(chartType == 'historyCases')
-    {
+    else if (chartType == 'historyCases') {
         var deathCases = Object.values(data.timeline.deaths);
         var recoveredCases = Object.values(data.timeline.recovered);
 
@@ -220,8 +233,7 @@ function drawChart(chartType, data, canvasId) {
         if (window.historyCases) window.historyCases.destroy();
         window.historyCases = new Chart(ctx, configLine);
     }
-    else if(chartType == 'historyNewCases')
-    {
+    else if (chartType == 'historyNewCases') {
         var deathCases = Object.values(data.timeline.deaths);
         var recoveredCases = Object.values(data.timeline.recovered);
 

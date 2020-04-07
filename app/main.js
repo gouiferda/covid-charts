@@ -72,10 +72,15 @@ function setChartLoading(txt) {
 
 function getListItem(text, nb, className) {
     var ret = '';
-    ret += '<li class="list-group-item d-flex justify-content-between align-items-center">';
+    ret += '<li class="list-group-item d-flex justify-content-between align-items-center ';
+    if (className == 'secondary') {
+        ret += 'bg-' + className;
+    }
+    ret += ' ">';
     ret += text;
-    //ret += '<span class="badge badge-'+className+'">';
+
     ret += '<span>';
+
     ret += nb;
     ret += '</span>';
     ret += '</li>';
@@ -109,7 +114,8 @@ function showTodayStats(data, elemId) {
     var greenClass = 'success';
     var blueClass = 'primary';
     var darkClass = 'dark';
-    var lightClass = ' light';
+    var lightClass = 'light';
+    var secClass = 'secondary';
 
     countryInfoText += '<div class="row">';
 
@@ -131,7 +137,7 @@ function showTodayStats(data, elemId) {
 
     countryInfoText += '<div class="col">';
     countryInfoText += '<ul class="list-group">';
-    countryInfoText += getListItem('Total cases', betterNumbers(totalCases), darkClass);
+    countryInfoText += getListItem('Total cases', betterNumbers(totalCases), secClass);
     countryInfoText += getListItem('Active cases (' + getPercentage(activeCases, totalCases, 2) + ')', betterNumbers(activeCases), orangeClass);
     countryInfoText += getListItem('Deaths (' + getPercentage(deathsCases, totalCases, 2) + ')', betterNumbers(deathsCases), redClass);
     countryInfoText += getListItem('Recovered (' + getPercentage(recoveredCases, totalCases, 2) + ')', betterNumbers(recoveredCases), greenClass);
