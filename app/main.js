@@ -35,6 +35,8 @@ for (var i = 0; i < citiesArr.length; i++) {
     selectCountry.appendChild(option);
 }
 
+var loadingTxt = '<p class="text-center">Loading...</p>';
+
 var isDarkTheme = false;
 var chosenCountry = 'morocco';
 gethistoryCasesChart();
@@ -73,6 +75,9 @@ function getListItem(text, nb, className) {
 }
 
 function getTodayChart() {
+
+    replaceInside(loadingTxt, 'countryStats');
+
     getDataCovid('today', chosenCountry).then(data => {
 
         drawChart('today', data, 'canvasPie');
@@ -150,6 +155,8 @@ function getTodayChart() {
 
 
 function getCountryInfo() {
+
+    replaceInside(loadingTxt, 'countryInfo');
 
     getDataCountry(chosenCountry).then(data => {
         // console.log(data[0].population);
