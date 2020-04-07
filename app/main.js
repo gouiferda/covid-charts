@@ -48,6 +48,7 @@ function setCountry(val) {
     chosenCountry = val;
 
     gethistoryCasesChart();
+    gethistoryNewCasesChart();
     getTodayChart();
     getCountryInfo();
     setCountryName(val);
