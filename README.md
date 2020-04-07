@@ -7,7 +7,18 @@ Visual representation of covid-19 data around the world
 
 ### Features
 
-Updated covid-19 data, Multiple countries, Countries data, Interactive charts, Dark mode
+- covid-19 daily data
+- covid-19 historical data
+- multiple countries with their data
+- interactive charts (Zoomable)
+- country parameter [Example](https://gouiferda.github.io/covid-charts/?country=usa)
+
+### Soon
+
+- multi language
+- more countries
+- worldwide map
+- progression chart
 
 ### Screenshots
 
