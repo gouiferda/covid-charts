@@ -7,8 +7,10 @@ Front end app to visual covid-19 data around the world, made with javascript and
 
 ### Features
 
+
 - covid-19 daily data
 - covid-19 historical data
+- responsive
 - multiple countries with their data
 - interactive charts (Zoomable)
 - country link parameter [Example](https://gouiferda.github.io/covid-charts/?country=usa)
