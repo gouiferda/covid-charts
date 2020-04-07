@@ -23,5 +23,5 @@ Visual representation of covid-19 data around the world
 
 ### Screenshots
 
-![Image](https://i.imgur.com/JeKfJTL.png)
+![Image](https://i.imgur.com/abbnZa4.png)
 
