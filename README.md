@@ -1,7 +1,7 @@
 
 ## Covid charts project
 
-Visual representation of covid-19 data around the world
+Front end app to visual covid-19 data around the world, made with javascript and bootstrap.
 
 [Live preview](https://gouiferda.github.io/covid-charts/)
 
