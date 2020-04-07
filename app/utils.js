@@ -18,7 +18,7 @@ function getDate(unix_timestamp) {
     }
     var fullDate = yyyy + '-' + mm + '-' + dd;
     var fullTime = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-    return fullDate+' '+fullTime;
+    return fullDate + ' ' + fullTime;
 }
 
 function ucf(string) {
@@ -82,8 +82,8 @@ function hexToRgb(hex) {
 }
 
 
-function getPercentage(nb, total, ad=2) {
+function getPercentage(nb, total, ad = 2) {
     if (total <= 0) return 'X%';
     var result = (parseInt(nb) * 100) / parseInt(total);
-    return result.toFixed(ad)+'%';
+    return result.toFixed(ad) + '%';
 }

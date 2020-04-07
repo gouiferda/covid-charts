@@ -14,7 +14,7 @@ async function getDataCovid(dataType, country) {
     if (dataType == 'today')
         apiLink = 'https://corona.lmao.ninja/countries';
     apiLink += '/' + country;
-    
+
     return getJSONData(apiLink);
 }
 

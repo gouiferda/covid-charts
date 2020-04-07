@@ -81,13 +81,12 @@ function getListItem(text, nb, className) {
     return ret;
 }
 
-function showTodayStats(data,elemId)
-{
-    replaceInside(getDate(data.updated),'updated');
+function showTodayStats(data, elemId) {
+    replaceInside(getDate(data.updated), 'updated');
 
-    replaceImg(data.countryInfo.flag,'countryImg');
+    replaceImg(data.countryInfo.flag, 'countryImg');
 
-    replaceInside(ucf(chosenCountry),'countryName');
+    replaceInside(ucf(chosenCountry), 'countryName');
 
 
     var totalCases = parseInt(data.cases);
@@ -144,44 +143,43 @@ function showTodayStats(data,elemId)
     setChartLoading('');
 }
 
-function showCountryInfoAndData(data,elemId)
-{
+function showCountryInfoAndData(data, elemId) {
 
     getDataCountry(chosenCountry).then(d => {
 
-        
-    var population = d[0].population;
-    var totalCases = parseInt(data.cases);
-    var countryInfoText2 = '';
 
-    var casesPerOneMillion = parseInt(data.casesPerOneMillion);
-    var deathsPerOneMillion = parseInt(data.deathsPerOneMillion);
+        var population = d[0].population;
+        var totalCases = parseInt(data.cases);
+        var countryInfoText2 = '';
 
-    countryInfoText2 += '<ul class="list-group">';
-   countryInfoText2 += getListItem('Population', betterNumbers(population), '');
-    countryInfoText2 += getListItem('Cases', betterNumbers(totalCases), '');
-    countryInfoText2 += getListItem('Percentage', getPercentage(totalCases, population, 4), '');
-    countryInfoText2 += getListItem('Cases per 1M', betterNumbers(casesPerOneMillion), '');
-    countryInfoText2 += getListItem('Deaths per 1M', betterNumbers(deathsPerOneMillion), '');
-    countryInfoText2 += '</ul>';
+        var casesPerOneMillion = parseInt(data.casesPerOneMillion);
+        var deathsPerOneMillion = parseInt(data.deathsPerOneMillion);
 
-    replaceInside(countryInfoText2, elemId);
+        countryInfoText2 += '<ul class="list-group">';
+        countryInfoText2 += getListItem('Population', betterNumbers(population), '');
+        countryInfoText2 += getListItem('Cases', betterNumbers(totalCases), '');
+        countryInfoText2 += getListItem('Percentage', getPercentage(totalCases, population, 4), '');
+        countryInfoText2 += getListItem('Cases per 1M', betterNumbers(casesPerOneMillion), '');
+        countryInfoText2 += getListItem('Deaths per 1M', betterNumbers(deathsPerOneMillion), '');
+        countryInfoText2 += '</ul>';
+
+        replaceInside(countryInfoText2, elemId);
 
     });
-    
+
 }
 
 function getTodayCasesAndCountryData() {
     replaceInside(loadingTxt, 'countryStats');
     replaceInside(loadingTxt, 'countryInfo');
-    replaceImg(loadingImgSrc,'countryImg');
+    replaceImg(loadingImgSrc, 'countryImg');
 
     getDataCovid('today', chosenCountry).then(data => {
 
         drawChart('today', data, 'canvasPie');
-        showTodayStats(data,'countryStats');
+        showTodayStats(data, 'countryStats');
 
-        showCountryInfoAndData(data,'countryInfo');
+        showCountryInfoAndData(data, 'countryInfo');
         setChartLoading('');
     });
 }
