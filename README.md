@@ -11,7 +11,7 @@ Visual representation of covid-19 data around the world
 - covid-19 historical data
 - multiple countries with their data
 - interactive charts (Zoomable)
-- country parameter [Example](https://gouiferda.github.io/covid-charts/?country=usa)
+- country link parameter [Example](https://gouiferda.github.io/covid-charts/?country=usa)
 
 ### Soon
 
