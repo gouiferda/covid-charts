@@ -169,6 +169,7 @@ function showCountryInfoAndData(data, elemId) {
 
         var population = d[0].population;
         var totalCases = parseInt(data.cases);
+        var totalTested = parseInt(data.tests);
         var countryInfoText2 = '';
 
         var casesPerOneMillion = parseInt(data.casesPerOneMillion);
@@ -176,6 +177,7 @@ function showCountryInfoAndData(data, elemId) {
 
         countryInfoText2 += '<ul class="list-group">';
         countryInfoText2 += getListItem('Population', betterNumbers(population), '');
+        countryInfoText2 += getListItem('Tested percentage', getPercentage(totalTested, population, 4), '');
         countryInfoText2 += getListItem('Cases', betterNumbers(totalCases), 'secondary');
         countryInfoText2 += getListItem('Affected percentage', getPercentage(totalCases, population, 4), '');
         countryInfoText2 += getListItem('Cases per 1M', betterNumbers(casesPerOneMillion), '');
