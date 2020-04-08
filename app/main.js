@@ -177,8 +177,8 @@ function showCountryInfoAndData(data, elemId) {
 
         countryInfoText2 += '<ul class="list-group">';
         countryInfoText2 += getListItem('Population', betterNumbers(population), '');
-        countryInfoText2 += getListItem('Tested percentage', getPercentage(totalTested, population, 4), '');
         countryInfoText2 += getListItem('Cases', betterNumbers(totalCases), 'secondary');
+        countryInfoText2 += getListItem('Tested percentage', getPercentage(totalTested, population, 4), '');
         countryInfoText2 += getListItem('Affected percentage', getPercentage(totalCases, population, 4), '');
         countryInfoText2 += getListItem('Cases per 1M', betterNumbers(casesPerOneMillion), '');
         countryInfoText2 += getListItem('Deaths per 1M', betterNumbers(deathsPerOneMillion), '');
