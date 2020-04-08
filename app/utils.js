@@ -62,7 +62,7 @@ function hexToRgb(hex) {
 
 
 function getPercentage(nb, total, ad = 2) {
-    if (total <= 0) return 'X%';
+    if (total <= 0 || nb <= 0) return 'N/A%';
     var result = (parseInt(nb) * 100) / parseInt(total);
     return result.toFixed(ad) + '%';
 }
