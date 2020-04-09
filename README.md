@@ -19,10 +19,10 @@ Front end app to visual covid-19 data around the world, made with javascript and
 
 ### Soon
 
-- Multi language
+- Web scrapper for Morocco
 - Search for a country box
 - More countries
-- Listing top cases by countries
+- Multi language
 - Worldwide map
 - Progression chart
 

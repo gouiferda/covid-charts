@@ -10,8 +10,39 @@ window.chartColors = {
     grey: 'rgb(201, 203, 207)'
 };
 
+function getStackedBarChartConfig(labelsGot, titleGot, datasetsGot) {
+    var config = {
+        type: 'bar',
+        data: {
+            labels: labelsGot,
+            datasets: datasetsGot,
+        },
+        options: {
+            title: {
+                display: false,
+                text: titleGot
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false
+            },
+            responsive: true,
+            scales: {
+                xAxes: [{
+                    stacked: true,
+                }],
+                yAxes: [{
+                    stacked: true
+                }]
+            }
+        }
+    };
+    return config;
+
+}
+
 function getLineChartConfig(labelsGot, titleGot, datasetsGot) {
-    var configLine = {
+    var config = {
         type: 'line',
         data: {
             labels: labelsGot,
@@ -38,12 +69,16 @@ function getLineChartConfig(labelsGot, titleGot, datasetsGot) {
                 mode: 'nearest',
                 intersect: true
             },
+
             scales: {
                 xAxes: [{
                     display: true,
                     scaleLabel: {
                         display: true,
                         labelString: 'Date'
+                    },
+                    ticks: {
+                        fontColor: "white",
                     }
                 }],
                 yAxes: [{
@@ -51,16 +86,7 @@ function getLineChartConfig(labelsGot, titleGot, datasetsGot) {
                     scaleLabel: {
                         display: true,
                         labelString: 'Cases'
-                    }
-                }]
-            },
-            scales: {
-                xAxes: [{
-                    ticks: {
-                        fontColor: "white",
-                    }
-                }],
-                yAxes: [{
+                    },
                     ticks: {
                         fontColor: "white",
                         //   beginAtZero: true,
@@ -84,12 +110,12 @@ function getLineChartConfig(labelsGot, titleGot, datasetsGot) {
             }
         }
     };
-    return configLine;
+    return config;
 
 }
 
 function getPieChartConfig(dataGot, labelsGot, titleGot) {
-    var configPie = {
+    var config = {
         type: 'pie',
         data: {
             datasets: [{
@@ -143,7 +169,7 @@ function getPieChartConfig(dataGot, labelsGot, titleGot) {
                         position: 'outside',
                         fontColor: function (data) {
                             return 'white';
-                        }, 
+                        },
                         //arc: true,
                         textMargin: 10,
                     },
@@ -160,7 +186,7 @@ function getPieChartConfig(dataGot, labelsGot, titleGot) {
             },
         }
     };
-    return configPie;
+    return config;
 }
 
 function drawChart(chartType, data, canvasId) {
@@ -174,14 +200,36 @@ function drawChart(chartType, data, canvasId) {
                 data.deaths
             ],
             [
-                'Active cases: ' + data.active,
-                'Recovered cases: ' + data.recovered,
-                'Death cases: ' + data.deaths,
+                'Active cases: ' + betterNumbers(data.active),
+                'Recovered cases: ' + betterNumbers(data.recovered),
+                'Death cases: ' + betterNumbers(data.deaths),
             ],
             'Total cases: ' + betterNumbers(data.cases)
         );
         if (window.myPie) window.myPie.destroy();
         window.myPie = new Chart(ctx, configPie);
+    } else if (chartType == 'tests') {
+        var negativeCases = parseInt(data.cases) - (parseInt(data.deaths) + parseInt(data.recovered));
+        var configPieTests = getPieChartConfig(
+            [
+                data.cases,
+                negativeCases
+            ],
+            [
+                'Positive: ' + betterNumbers(data.cases),
+                'Negative: ' + betterNumbers(negativeCases),
+            ],
+            'Tests'
+        );
+        if (window.pieTests) window.pieTests.destroy();
+        window.pieTests = new Chart(ctx, configPieTests);
+        // var configStackedBar = getStackedBarChartConfig(
+        //     ['Tests'],
+        //     'Tests',
+        //     [[  data.tests]],
+        // );
+        // if (window.myStackedBar) window.myStackedBar.destroy();
+        // window.myStackedBar = new Chart(ctx, configStackedBar);
     }
     else if (chartType == 'historyCases') {
         var deathCases = Object.values(data.timeline.deaths);

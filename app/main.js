@@ -118,10 +118,6 @@ function showToDateStats(data, elemId) {
     var recoveredCases = parseInt(data.recovered);
     var activeCases = totalCases - (deathsCases + recoveredCases);
 
-    var totalTests = parseInt(data.tests);
-    var negativeTests = parseInt(data.tests) - parseInt(data.cases);
-    var todayDeaths = parseInt(data.todayDeaths);
-    var todayCases = parseInt(data.todayCases);
 
     var criticalCases = parseInt(data.critical);
 
@@ -138,19 +134,9 @@ function showToDateStats(data, elemId) {
     countryInfoText += '<div class="row">';
 
 
-    // countryInfoText += '<div class="col">';
-    // countryInfoText += '<ul class="list-group">';
-    // countryInfoText += getListItem('Total tests', betterNumbers(totalTests), lightClass);
-    // countryInfoText += getListItem('Positive tests (' + getPercentage(totalCases, totalTests, 2) + ')', betterNumbers(totalCases), lightClass);
-    // countryInfoText += getListItem('Negative tests (' + getPercentage(negativeTests, totalTests, 2) + ')', betterNumbers(negativeTests), lightClass);
-    // countryInfoText += '</ul>';
-    // countryInfoText += '</div>';
-
 
     countryInfoText += '<div class="col">';
     countryInfoText += '<ul class="list-group">';
-    // countryInfoText += getListItem('Today cases', betterNumbers(todayCases), lightClass);
-    // countryInfoText += getListItem('Today deaths', betterNumbers(todayDeaths), lightClass);
     countryInfoText += getListItem('Total cases', betterNumbers(totalCases), secClass);
     countryInfoText += getListItem('Active cases (' + getPercentage(activeCases, totalCases, 2) + ')', betterNumbers(activeCases), orangeClass);
     countryInfoText += getListItem('Total deaths (' + getPercentage(deathsCases, totalCases, 2) + ')', betterNumbers(deathsCases), redClass);
@@ -281,7 +267,9 @@ function getTodayCasesAndCountryData() {
 
     getDataCovid('today', chosenCountry).then(data => {
 
-        drawChart('today', data, 'canvasPie');
+        drawChart('today', data, 'canvasPieToDate');
+        drawChart('tests', data, 'canvasPieTests');
+       // drawChart('tests', data, 'canvasStackedBar');
         showToDateStats(data, 'toDateStats');
         showTodayStats(data, 'todayStats');
         showTestsStats(data, 'testsStats');
