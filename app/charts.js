@@ -22,7 +22,7 @@ function getLineChartConfig(labelsGot, titleGot, datasetsGot) {
             legend: {
                 labels: {
                     fontColor: "white",
-                    fontSize: 14
+                    fontSize: 12
                 }
             },
             // title: {
@@ -105,7 +105,7 @@ function getPieChartConfig(dataGot, labelsGot, titleGot) {
         },
         options: {
             responsive: true,
-            cutoutPercentage: 50,
+            //cutoutPercentage: 50,
             legend: {
                 display: false,
                 labels: {
@@ -114,7 +114,7 @@ function getPieChartConfig(dataGot, labelsGot, titleGot) {
                 }
             },
             title: {
-                display: true,
+                display: false,
                 text: titleGot,
                 fontSize: 14,
                 fontColor: "white",
@@ -145,14 +145,14 @@ function getPieChartConfig(dataGot, labelsGot, titleGot) {
                             return 'white';
                         }, 
                         //arc: true,
-                        textMargin: 10,
+                        textMargin: 14,
                     },
                     {
                         render: 'percentage',
                         fontColor: function (data) {
                             return 'white';
                         },
-                        precision: 2
+                        precision: 0
                     }
                 ]
 
@@ -176,7 +176,7 @@ function drawChart(chartType, data, canvasId) {
             [
                 'Active cases: ' + data.active,
                 'Recovered cases: ' + data.recovered,
-                'Death cases: ' + data.deaths
+                'Death cases: ' + data.deaths,
             ],
             'Total cases: ' + betterNumbers(data.cases)
         );

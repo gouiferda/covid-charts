@@ -54,7 +54,7 @@ for (var i = 0; i < citiesArr.length; i++) {
     selectCountry.appendChild(option);
 }
 
-selectElement('selectCountry',chosenCountry);
+selectElement('selectCountry', chosenCountry);
 
 function setCountry(val) {
     chosenCountry = val;
@@ -87,21 +87,25 @@ function getListItem(text, nb, className) {
         ret += 'bg-' + className;
     }
     ret += ' ">';
+
+    ret += '<small>';
     ret += text;
 
+    ret += '</small>';
     ret += '<span>';
-
+    ret += '<small>';
     ret += nb;
+    ret += '</small>';
     ret += '</span>';
     ret += '</li>';
     return ret;
 }
 
-function showTodayStats(data, elemId) {
+function showToDateStats(data, elemId) {
 
     if (!issetObj(data) || !issetElem(elemId)) return;
 
-    
+
     replaceInside(getDate(data.updated), 'updated');
 
     replaceImg(data.countryInfo.flag, 'countryImg');
@@ -121,7 +125,62 @@ function showTodayStats(data, elemId) {
 
     var criticalCases = parseInt(data.critical);
 
-    //countryStats 
+    //toDateStats 
+    var countryInfoText = '';
+    var redClass = 'danger';
+    var orangeClass = 'warning';
+    var greenClass = 'success';
+    var blueClass = 'primary';
+    var darkClass = 'dark';
+    var lightClass = 'light';
+    var secClass = 'secondary';
+
+    countryInfoText += '<div class="row">';
+
+
+    // countryInfoText += '<div class="col">';
+    // countryInfoText += '<ul class="list-group">';
+    // countryInfoText += getListItem('Total tests', betterNumbers(totalTests), lightClass);
+    // countryInfoText += getListItem('Positive tests (' + getPercentage(totalCases, totalTests, 2) + ')', betterNumbers(totalCases), lightClass);
+    // countryInfoText += getListItem('Negative tests (' + getPercentage(negativeTests, totalTests, 2) + ')', betterNumbers(negativeTests), lightClass);
+    // countryInfoText += '</ul>';
+    // countryInfoText += '</div>';
+
+
+    countryInfoText += '<div class="col">';
+    countryInfoText += '<ul class="list-group">';
+    // countryInfoText += getListItem('Today cases', betterNumbers(todayCases), lightClass);
+    // countryInfoText += getListItem('Today deaths', betterNumbers(todayDeaths), lightClass);
+    countryInfoText += getListItem('Total cases', betterNumbers(totalCases), secClass);
+    countryInfoText += getListItem('Active cases (' + getPercentage(activeCases, totalCases, 2) + ')', betterNumbers(activeCases), orangeClass);
+    countryInfoText += getListItem('Total deaths (' + getPercentage(deathsCases, totalCases, 2) + ')', betterNumbers(deathsCases), redClass);
+    countryInfoText += getListItem('Total recovered (' + getPercentage(recoveredCases, totalCases, 2) + ')', betterNumbers(recoveredCases), greenClass);
+    countryInfoText += getListItem('Total critical (' + getPercentage(criticalCases, totalCases, 2) + ')', betterNumbers(criticalCases), greenClass);
+    countryInfoText += '</ul>';
+    countryInfoText += '</div>';
+
+    countryInfoText += '</div>';
+    replaceInside(countryInfoText, elemId);
+    setChartLoading('');
+}
+
+function showTestsStats(data, elemId) {
+
+    if (!issetObj(data) || !issetElem(elemId)) return;
+
+
+    replaceInside(getDate(data.updated), 'updated');
+
+    replaceImg(data.countryInfo.flag, 'countryImg');
+
+    replaceInside(ucf(chosenCountry), 'countryName');
+
+
+    var totalCases = parseInt(data.cases);
+    var totalTests = parseInt(data.tests);
+    var negativeTests = parseInt(data.tests) - parseInt(data.cases);
+
+    //toDateStats 
     var countryInfoText = '';
     var redClass = 'danger';
     var orangeClass = 'warning';
@@ -137,21 +196,45 @@ function showTodayStats(data, elemId) {
     countryInfoText += '<div class="col">';
     countryInfoText += '<ul class="list-group">';
     countryInfoText += getListItem('Total tests', betterNumbers(totalTests), lightClass);
-    countryInfoText += getListItem('Positive tests (' + getPercentage(totalCases, totalTests, 2) + ')', betterNumbers(totalCases), lightClass);
+    countryInfoText += getListItem('Positive tests (' + getPercentage(totalCases, totalTests, 2) + ')', betterNumbers(totalCases), secClass);
     countryInfoText += getListItem('Negative tests (' + getPercentage(negativeTests, totalTests, 2) + ')', betterNumbers(negativeTests), lightClass);
     countryInfoText += '</ul>';
     countryInfoText += '</div>';
+
+
+
+    countryInfoText += '</div>';
+    replaceInside(countryInfoText, elemId);
+    setChartLoading('');
+}
+
+function showTodayStats(data, elemId) {
+
+    if (!issetObj(data) || !issetElem(elemId)) return;
+
+    var todayDeaths = parseInt(data.todayDeaths);
+    var todayCases = parseInt(data.todayCases);
+
+
+    //toDateStats 
+    var countryInfoText = '';
+    var redClass = 'danger';
+    var orangeClass = 'warning';
+    var greenClass = 'success';
+    var blueClass = 'primary';
+    var darkClass = 'dark';
+    var lightClass = 'light';
+    var secClass = 'secondary';
+
+    countryInfoText += '<div class="row">';
+
+
 
 
     countryInfoText += '<div class="col">';
     countryInfoText += '<ul class="list-group">';
     countryInfoText += getListItem('Today cases', betterNumbers(todayCases), lightClass);
     countryInfoText += getListItem('Today deaths', betterNumbers(todayDeaths), lightClass);
-    countryInfoText += getListItem('Total cases', betterNumbers(totalCases), secClass);
-    countryInfoText += getListItem('Active cases (' + getPercentage(activeCases, totalCases, 2) + ')', betterNumbers(activeCases), orangeClass);
-    countryInfoText += getListItem('Deaths (' + getPercentage(deathsCases, totalCases, 2) + ')', betterNumbers(deathsCases), redClass);
-    countryInfoText += getListItem('Recovered (' + getPercentage(recoveredCases, totalCases, 2) + ')', betterNumbers(recoveredCases), greenClass);
-    countryInfoText += getListItem('Critical (' + getPercentage(criticalCases, totalCases, 2) + ')', betterNumbers(criticalCases), greenClass);
     countryInfoText += '</ul>';
     countryInfoText += '</div>';
 
@@ -159,6 +242,7 @@ function showTodayStats(data, elemId) {
     replaceInside(countryInfoText, elemId);
     setChartLoading('');
 }
+
 
 function showCountryInfoAndData(data, elemId) {
     if (!issetObj(data) || !issetElem(elemId)) return;
@@ -176,7 +260,7 @@ function showCountryInfoAndData(data, elemId) {
         var deathsPerOneMillion = parseInt(data.deathsPerOneMillion);
 
         countryInfoText2 += '<ul class="list-group">';
-        countryInfoText2 += getListItem('Population', betterNumbers(population), '');
+        countryInfoText2 += getListItem('Population', abbreviate(population, 2, false, false), '');
         countryInfoText2 += getListItem('Cases', betterNumbers(totalCases), 'secondary');
         countryInfoText2 += getListItem('Tested percentage', getPercentage(totalTested, population, 4), '');
         countryInfoText2 += getListItem('Affected percentage', getPercentage(totalCases, population, 4), '');
@@ -191,15 +275,16 @@ function showCountryInfoAndData(data, elemId) {
 }
 
 function getTodayCasesAndCountryData() {
-    replaceInside(loadingTxt, 'countryStats');
+    replaceInside(loadingTxt, 'toDateStats');
     replaceInside(loadingTxt, 'countryInfo');
     replaceImg(loadingImgSrc, 'countryImg');
 
     getDataCovid('today', chosenCountry).then(data => {
 
         drawChart('today', data, 'canvasPie');
-        showTodayStats(data, 'countryStats');
-
+        showToDateStats(data, 'toDateStats');
+        showTodayStats(data, 'todayStats');
+        showTestsStats(data, 'testsStats');
         showCountryInfoAndData(data, 'countryInfo');
         setChartLoading('');
     });

@@ -2,9 +2,13 @@
 <html>
 
 <head>
-    <title>Covid chart</title>
+    <title>COVID CHART</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="assets/favicon/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
     <link rel="stylesheet" id="linkTheme" href="assets/css/dark.min.css">
     <link rel="stylesheet" href="assets/css/custom.css">
     <script src="assets/js/jquery.min.js"></script>
@@ -22,7 +26,7 @@
     <div class="jumbotron" style="padding: 15px">
 
         <div class=" text-center">
-            <h1>Covid charts</h1>
+            <h3>COVID CHARTS</h3>
             <div class="container">
                 <div class="row">
                     <div class="col-4 offset-4">
@@ -43,8 +47,13 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
+                <div class="alert alert-dark text-center role=" alert">
+                    Updated: <span id='updated'></span>
+                </div>
+            </div>
+            <div class="col-12">
                 <div class="row">
-                    <div class="col-sm-12 col-lg-4">
+                    <div class="col-sm-12 col-lg-3">
                         <div class="card">
                             <img class="card-img-top" id="countryImg">
                             <div class="card-body">
@@ -58,56 +67,79 @@
                         </div>
                         <div class="mt-3"></div>
                     </div>
-                    <div class="col-sm-12 col-lg-8">
-                        <div class="card">
-                            <div class="card-header text-center">
-                                <span class="countryName">Morocco</span> - statistiques - Updated: <span
-                                    id='updated'></span>
+
+                    <div class="col-sm-12 col-lg-9">
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-6">
+                                <div class="card">
+                                    <div class="card-header text-center">
+                                        <span class="countryName"></span> - today cases
+                                    </div>
+                                    <div class="card-body">
+                                        <span id="todayStats"></span>
+                                        <div class="mt-2"></div>
+                                    </div>
+                                </div>
+                                <div class="mt-2"></div>
                             </div>
-                            <div class="card-body">
-                                <p class="card-text">
-                                    <span id="countryStats"></span>
-                                </p>
+                            <div class="col-sm-12 col-lg-6">
+                                <div class="card">
+                                    <div class="card-header text-center">
+                                        <span class="countryName"></span> - total tests
+                                    </div>
+                                    <div class="card-body">
+                                        <span id="testsStats"></span>
+                                        <div class="mt-2"></div>
+                                    </div>
+                                </div>
+                                <div class="mt-2"></div>
+                            </div>
+                            <div class="col-sm-12 col-lg-12">
+                                <div class="card">
+                                    <div class="card-header text-center">
+                                        <span class="countryName"></span> - to date total cases
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-sm-12 col-lg-4">
+                                                <span id="toDateStats"></span>
+                                                <div class="mt-2"></div>
+                                            </div>
+                                            <div class="col-sm-12 col-lg-8">
+                                                <span class="chartLoading"></span>
+                                                <canvas id="canvasPie"></canvas>
+                                                <div class="mt-2"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-2"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-lg-12">
+                <div class="mt-3"></div>
+                <div class="card">
+                    <div class="card-header text-center">
+                        <span class="countryName"></span> - cases history
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-6">
+                                <span class="chartLoading"></span>
+                                <canvas id="historyCasesChart"></canvas>
+                                <div class="mt-2"></div>
+                            </div>
+                            <div class="col-sm-12 col-lg-6">
+                                <span class="chartLoading"></span>
+                                <canvas id="historyNewCasesChart"></canvas>
+                                <div class="mt-2"></div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12 col-lg-12">
-                <div class="mt-3"></div>
-                <div class="card">
-                    <div class="card-header text-center">
-                        <span class="countryName">Morocco</span> - cases history
-                    </div>
-                    <div class="card-body">
-                        <span class="chartLoading"></span>
-                        <canvas id="historyCasesChart"></canvas>
-                    </div>
-                </div>
-                <div class="mt-3"></div>
-            </div>
-            <div class="col-sm-12 col-lg-12">
-                <div class="mt-3"></div>
-                <div class="card">
-                    <div class="card-header text-center">
-                        <span class="countryName">Morocco</span> - new cases history
-                    </div>
-                    <div class="card-body">
-                        <span class="chartLoading"></span>
-                        <canvas id="historyNewCasesChart"></canvas>
-                    </div>
-                </div>
-                <div class="mt-3"></div>
-            </div>
-            <div class="col-sm-12 col-lg-12">
-                <div class="mt-3"></div>
-                <div class="card">
-                    <div class="card-header text-center">
-                        <span class="countryName">Morocco</span> - to date total cases
-                    </div>
-                    <div class="card-body">
-                        <span class="chartLoading"></span>
-                        <canvas id="canvasPie"></canvas>
                     </div>
                 </div>
                 <div class="mt-3"></div>
@@ -127,18 +159,19 @@
                 <div class="col-6 col-md">
                     <h5>Data sources</h5>
                     <ul class="list-unstyled text-small">
-                        <li><a class="text-muted" href="https://github.com/novelcovid/api"
-                                target="_blank">Novelcovid API</a></li>
-                        <li><a class="text-muted" href="https://restcountries.eu" target="_blank">Restcountries API</a></li>
+                        <li><a class="text-muted" href="https://github.com/novelcovid/api" target="_blank">Novelcovid
+                                API</a></li>
+                        <li><a class="text-muted" href="https://restcountries.eu" target="_blank">Restcountries API</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="col-6 col-md">
                     <h5>About</h5>
                     <ul class="list-unstyled text-small">
-                        <li><a class="text-muted"
-                                href="https://github.com/gouiferda/covid-charts"
+                        <li><a class="text-muted" href="https://github.com/gouiferda/covid-charts"
                                 target="_blank">Github</a></li>
-                        <li><a class="text-muted" href="https://gouiferda.github.io/" target="_blank">Other projects</a></li>
+                        <li><a class="text-muted" href="https://gouiferda.github.io/" target="_blank">Other projects</a>
+                        </li>
                         <li><a class="text-muted" href="mailto:soufiane.dev8@gmail.com" target="_blank">Contact</a>
                         </li>
                     </ul>
