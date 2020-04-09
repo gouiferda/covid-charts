@@ -17,10 +17,6 @@ Front end app to visual covid-19 data around the world, made with javascript and
 - Interactive charts (Zoom,Hover)
 - Country link parameter [Example](https://gouiferda.github.io/covid-charts/?country=usa)
 
-### Screenshots
-
-![Image](https://i.imgur.com/abbnZa4.png)
-
 ### Soon
 
 - Multi language
@@ -29,3 +25,7 @@ Front end app to visual covid-19 data around the world, made with javascript and
 - Listing top cases by countries
 - Worldwide map
 - Progression chart
+
+### Screenshots
+
+![Image](https://i.imgur.com/abbnZa4.png)
