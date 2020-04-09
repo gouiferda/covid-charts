@@ -145,7 +145,7 @@ function getPieChartConfig(dataGot, labelsGot, titleGot) {
                             return 'white';
                         }, 
                         //arc: true,
-                        textMargin: 14,
+                        textMargin: 10,
                     },
                     {
                         render: 'percentage',
