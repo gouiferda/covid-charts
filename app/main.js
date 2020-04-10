@@ -181,8 +181,8 @@ function showTestsStats(data, elemId) {
 
     countryInfoText += '<div class="col">';
     countryInfoText += '<ul class="list-group">';
-    countryInfoText += getListItem('Total tests', betterNumbers(totalTests), lightClass);
-    countryInfoText += getListItem('Positive tests (' + getPercentage(totalCases, totalTests, 2) + ')', betterNumbers(totalCases), secClass);
+    countryInfoText += getListItem('Total tests', betterNumbers(totalTests), secClass);
+    countryInfoText += getListItem('Positive tests (' + getPercentage(totalCases, totalTests, 2) + ')', betterNumbers(totalCases), lightClass);
     countryInfoText += getListItem('Negative tests (' + getPercentage(negativeTests, totalTests, 2) + ')', betterNumbers(negativeTests), lightClass);
     countryInfoText += '</ul>';
     countryInfoText += '</div>';
@@ -219,7 +219,7 @@ function showTodayStats(data, elemId) {
 
     countryInfoText += '<div class="col">';
     countryInfoText += '<ul class="list-group">';
-    countryInfoText += getListItem('Today cases', betterNumbers(todayCases), lightClass);
+    countryInfoText += getListItem('Today cases', betterNumbers(todayCases), secClass);
     countryInfoText += getListItem('Today deaths', betterNumbers(todayDeaths), lightClass);
     countryInfoText += '</ul>';
     countryInfoText += '</div>';
