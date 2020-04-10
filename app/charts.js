@@ -223,13 +223,6 @@ function drawChart(chartType, data, canvasId) {
         );
         if (window.pieTests) window.pieTests.destroy();
         window.pieTests = new Chart(ctx, configPieTests);
-        // var configStackedBar = getStackedBarChartConfig(
-        //     ['Tests'],
-        //     'Tests',
-        //     [[  data.tests]],
-        // );
-        // if (window.myStackedBar) window.myStackedBar.destroy();
-        // window.myStackedBar = new Chart(ctx, configStackedBar);
     }
     else if (chartType == 'historyCases') {
         var deathCases = Object.values(data.timeline.deaths);
@@ -253,28 +246,28 @@ function drawChart(chartType, data, canvasId) {
                     label: 'Total cases',
                     backgroundColor: window.chartColors.blue,
                     borderColor: window.chartColors.blue,
-                    data: totalCases, //
+                    data: totalCases, 
                     fill: false,
                 },
                 {
                     label: 'Active cases',
                     backgroundColor: window.chartColors.orange,
                     borderColor: window.chartColors.orange,
-                    data: activeCases, //
+                    data: activeCases, 
                     fill: false,
                 },
                 {
                     label: 'Death cases',
                     backgroundColor: window.chartColors.red,
                     borderColor: window.chartColors.red,
-                    data: deathCases, //
+                    data: deathCases, 
                     fill: false,
                 },
                 {
                     label: 'Recovered cases',
                     backgroundColor: window.chartColors.green,
                     borderColor: window.chartColors.green,
-                    data: recoveredCases, //
+                    data: recoveredCases,
                     fill: false,
                 }
             ],
@@ -293,7 +286,6 @@ function drawChart(chartType, data, canvasId) {
         var currentActiveCase = 0;
         for (var i = 0; i < totalCases.length; i++) {
             currentActiveCase = parseInt(totalCases[i]) - (parseInt(recoveredCases[i]) + parseInt(deathCases[i]));
-            // console.log(currentActiveCase);
             activeCases.push(currentActiveCase);
         }
 

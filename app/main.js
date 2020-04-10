@@ -1,9 +1,6 @@
 
-
-
 var loadingTxt = '<p class="text-center">Loading...</p>';
 var loadingImgSrc = 'assets/img/gifs/placeholder.gif';
-
 
 var citiesArr = [
     "morocco",
@@ -133,8 +130,6 @@ function showToDateStats(data, elemId) {
 
     countryInfoText += '<div class="row">';
 
-
-
     countryInfoText += '<div class="col">';
     countryInfoText += '<ul class="list-group">';
     countryInfoText += getListItem('Total cases', betterNumbers(totalCases), secClass);
@@ -178,7 +173,6 @@ function showTestsStats(data, elemId) {
 
     countryInfoText += '<div class="row">';
 
-
     countryInfoText += '<div class="col">';
     countryInfoText += '<ul class="list-group">';
     countryInfoText += getListItem('Total tests', betterNumbers(totalTests), secClass);
@@ -213,9 +207,6 @@ function showTodayStats(data, elemId) {
     var secClass = 'secondary';
 
     countryInfoText += '<div class="row">';
-
-
-
 
     countryInfoText += '<div class="col">';
     countryInfoText += '<ul class="list-group">';
@@ -269,7 +260,6 @@ function getTodayCasesAndCountryData() {
 
         drawChart('today', data, 'canvasPieToDate');
         drawChart('tests', data, 'canvasPieTests');
-       // drawChart('tests', data, 'canvasStackedBar');
         showToDateStats(data, 'toDateStats');
         showTodayStats(data, 'todayStats');
         showTestsStats(data, 'testsStats');
