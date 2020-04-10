@@ -7,25 +7,25 @@ Front end app to visual covid-19 data around the world, made with javascript and
 
 ### Features
 
-- COVID-19 data and charts per country
+- Fast, doesn't require node js server
+- COVID-19 data and charts(pie,line) per country
     - total tests
     - daily cases
     - to date cases
     - historical data
-- Fast and doesn't require node js server
 - Responsive
-- Interactive charts (Zoom,Hover)
 - Country link parameter [Example](https://gouiferda.github.io/covid-charts/?country=usa)
 
 ### Soon
 
 - Web scrapper for Morocco
-- Search for a country box
-- More countries
-- Multi language
-- Worldwide map
+- Moroccan Map
+- Table representation of data
+- Search for a country box/ More countries
+- Multi language: Arabic, French
+- Worldwide map with total country cases
 - Progression chart
 
 ### Screenshots
 
-![Image](https://i.imgur.com/abbnZa4.png)
+![Image](https://i.imgur.com/eht92ef.png)
