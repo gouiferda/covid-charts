@@ -5,6 +5,7 @@ var loadingImgSrc = 'assets/img/gifs/placeholder.gif';
 var citiesArr = [
     "morocco",
     "china",
+    "india",
     "france",
     "italy",
     "spain",
@@ -210,7 +211,7 @@ function showTodayStats(data, elemId) {
 
     countryInfoText += '<div class="col">';
     countryInfoText += '<ul class="list-group">';
-    countryInfoText += getListItem('Today cases', betterNumbers(todayCases), secClass);
+    countryInfoText += getListItem('Today cases', betterNumbers(todayCases), lightClass);
     countryInfoText += getListItem('Today deaths', betterNumbers(todayDeaths), lightClass);
     countryInfoText += '</ul>';
     countryInfoText += '</div>';
