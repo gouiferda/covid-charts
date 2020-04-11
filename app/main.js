@@ -23,7 +23,7 @@ var citiesArr = [
     "switzerland",
     "turkey",
     "belgium",
-    "netherlands",
+    "nl",
     "canada",
     "russia",
     "portugal"
@@ -238,8 +238,8 @@ function showCountryInfoAndData(data, elemId) {
         var deathsPerOneMillion = parseInt(data.deathsPerOneMillion);
 
         countryInfoText2 += '<ul class="list-group">';
-        countryInfoText2 += getListItem('Population', abbreviate(population, 2, false, false), '');
-        countryInfoText2 += getListItem('Cases', betterNumbers(totalCases), 'secondary');
+        countryInfoText2 += getListItem('Population', abbreviate(population, 2, false, false), 'secondary');
+        countryInfoText2 += getListItem('Cases', betterNumbers(totalCases), '');
         countryInfoText2 += getListItem('Tested percentage', getPercentage(totalTested, population, 4), '');
         countryInfoText2 += getListItem('Affected percentage', getPercentage(totalCases, population, 4), '');
         countryInfoText2 += getListItem('Cases per 1M', betterNumbers(casesPerOneMillion), '');
