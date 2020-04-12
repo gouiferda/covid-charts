@@ -2,55 +2,43 @@
 var loadingTxt = '<p class="text-center">Loading...</p>';
 var loadingImgSrc = 'assets/img/gifs/placeholder.gif';
 
-var citiesArr = [
-    "morocco",
-    "china",
-    "india",
-    "france",
-    "italy",
-    "spain",
-    "germany",
-    "usa",
-    "algeria",
-    "tunisia",
-    "mauritania",
-    "libya",
-    "egypt",
-    "iran",
-    "japan",
-    "uk",
-    "korea",
-    "switzerland",
-    "turkey",
-    "belgium",
-    "nl",
-    "canada",
-    "russia",
-    "portugal"
-];
 
 
 var gotCountry = findGetParameter('country');
-if (!(citiesArr.includes(gotCountry))) gotCountry = null;
+if (getCountryByCode(gotCountry) == 'N/A') gotCountry = null;
 
 //var gotLang = findGetParameter('lang');
 
 
-var chosenCountry = (gotCountry != null) ? gotCountry : 'morocco';
+var chosenCountry = (gotCountry != null) ? gotCountry : 'ma'; //
 getHistoryAndNewCasesCharts();
 getTodayCasesAndCountryData();
 setChartLoading(loadingTxt);
 setCountryName(chosenCountry);
 
 var selectCountry = document.getElementById('selectCountry');
-for (var i = 0; i < citiesArr.length; i++) {
-    var option = document.createElement("option");
-    option.text = ucf(citiesArr[i]);
-    option.value = citiesArr[i];
-    if (citiesArr[i] == 'morocco')
+
+// for (var i = 0; i < citiesArr.length; i++) {
+//     var option = document.createElement("option");
+//     option.text = ucf(citiesArr[i]);
+//     option.value = citiesArr[i];
+//     if (citiesArr[i] == 'morocco')
+//         option.selected = 'selected';
+//     selectCountry.appendChild(option);
+// }
+
+
+for(var c in countriesList)
+{
+     console.log(c + "=" + countriesList[c]);
+   var option = document.createElement("option");
+    option.text = c;
+    option.value = countriesList[c];
+    if (countriesList[c] == 'ma')
         option.selected = 'selected';
     selectCountry.appendChild(option);
 }
+
 
 selectElement('selectCountry', chosenCountry);
 
@@ -63,8 +51,19 @@ function setCountry(val) {
     setCountryName(chosenCountry);
 }
 
+
+function getCountryByCode(code) {
+    for(var c in countriesList)
+    {
+        if (code == countriesList[c]) return c;
+         //console.log(c + "=" + countriesList[c]);
+    }
+    return 'N/A';
+    
+}
+
 function setCountryName(val) {
-    var countryName = ucf(val);
+    var countryName = getCountryByCode(val);
     var elements = document.getElementsByClassName("countryName");
     for (var i = 0; i < elements.length; i++) {
         elements[i].innerHTML = countryName;
@@ -155,7 +154,7 @@ function showTestsStats(data, elemId) {
 
     replaceImg(data.countryInfo.flag, 'countryImg');
 
-    replaceInside(ucf(chosenCountry), 'countryName');
+    replaceInside(getCountryByCode(chosenCountry), 'countryName');
 
 
     var totalCases = parseInt(data.cases);
@@ -229,7 +228,7 @@ function showCountryInfoAndData(data, elemId) {
 
         if (!issetObj(d)) return;
 
-        var population = d[0].population;
+        var population = d.population;
         var totalCases = parseInt(data.cases);
         var totalTested = parseInt(data.tests);
         var countryInfoText2 = '';

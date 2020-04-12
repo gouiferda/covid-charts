@@ -17,7 +17,7 @@ async function getDataCovid(dataType, country) {
 async function getDataCountry(country) {
 
     var apiLink = '';
-    apiLink = 'https://restcountries.eu/rest/v2/name';
+    apiLink = 'https://restcountries.eu/rest/v2/alpha';
     apiLink += '/' + country;
 
     return getJSONData(apiLink);

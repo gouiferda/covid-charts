@@ -21,7 +21,7 @@ Front end app to visual covid-19 data around the world, made with javascript and
     - daily cases
     - to date cases
     - historical cases, new cases and growth factor
-- Country link parameter [Example](https://gouiferda.github.io/covid-charts/?country=usa)
+- Country link parameter [Example](https://gouiferda.github.io/covid-charts/?country=ma)
 - Fast, doesn't require node js server
 - Responsive on all screens
 
