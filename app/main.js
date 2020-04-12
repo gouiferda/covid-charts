@@ -275,6 +275,8 @@ function getHistoryAndNewCasesCharts() {
     getDataCovid('history', chosenCountry).then(data => {
         drawChart('historyCases', data, 'historyCasesChart');
         drawChart('historyNewCases', data, 'historyNewCasesChart');
+        drawChart('historygrowthHistory', data, 'growthHistoryChart');
+        
     });
 }
 

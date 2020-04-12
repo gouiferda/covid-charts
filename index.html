@@ -18,13 +18,11 @@
     <script src="assets/js/chartjs-plugin-zoom.min.js"></script>
     <script src="assets/js/chartjs-plugin-labels.js"></script>
     <script src="assets/js/utils.js"></script>
-
 </head>
 
 <body>
 
     <div class="jumbotron" style="padding: 15px">
-
         <div class=" text-center">
             <h3>COVID CHARTS</h3>
             <div class="container">
@@ -88,8 +86,8 @@
 
                     <div class="col-sm-12 col-lg-9">
                         <div class="row">
-                            
-                           
+
+
                             <div class="col-sm-12 col-lg-12">
                                 <div class="card">
                                     <div class="card-header text-center">
@@ -158,6 +156,32 @@
                 </div>
                 <div class="mt-3"></div>
             </div>
+            <div class="col-sm-12 col-lg-12">
+                <div class="mt-3"></div>
+                <div class="card">
+                    <div class="card-header text-center">
+                        <span class="countryName"></span> - cases growth factor history
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-6">
+                                <span class="chartLoading"></span>
+                                <canvas id="growthHistoryChart"></canvas>
+                                <div class="mt-2"></div>
+                            </div>
+                            <div class="col-sm-12 col-lg-6">
+                                <!-- <span class="chartLoading"></span>
+                                <canvas id="growthHistoryChart"></canvas>
+                                <div class="mt-2"></div> -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="mt-3"></div>
+            </div>
+
+
         </div>
 
         <footer class="pt-4 my-md-5 pt-md-5 border-top">
@@ -182,11 +206,15 @@
                 <div class="col-6 col-md">
                     <h5>About</h5>
                     <ul class="list-unstyled text-small">
-                        <li><a class="text-muted" href="https://github.com/gouiferda/covid-charts"
-                                target="_blank">Github</a></li>
-                        <li><a class="text-muted" href="https://gouiferda.github.io/" target="_blank">Other projects</a>
+                        <li>
+                            <a class="text-muted" href="https://github.com/gouiferda/covid-charts"
+                                target="_blank">Project</a>
                         </li>
-                        <li><a class="text-muted" href="mailto:soufiane.dev8@gmail.com" target="_blank">Contact</a>
+                        <li>
+                            <a class="text-muted" href="https://github.com/gouiferda/" target="_blank">Github</a>
+                        </li>
+                        <li>
+                            <a class="text-muted" href="https://gouiferda.github.io/" target="_blank">Portfolio</a>
                         </li>
                     </ul>
                 </div>

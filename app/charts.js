@@ -75,7 +75,8 @@ function getLineChartConfig(labelsGot, titleGot, datasetsGot) {
                     display: true,
                     scaleLabel: {
                         display: true,
-                        labelString: 'Date'
+                        labelString: 'Date',
+                        fontColor: "white",
                     },
                     ticks: {
                         fontColor: "white",
@@ -85,7 +86,8 @@ function getLineChartConfig(labelsGot, titleGot, datasetsGot) {
                     display: true,
                     scaleLabel: {
                         display: true,
-                        labelString: 'Cases'
+                        labelString: titleGot,
+                        fontColor: "white",
                     },
                     ticks: {
                         fontColor: "white",
@@ -240,27 +242,27 @@ function drawChart(chartType, data, canvasId) {
 
         var configLine = getLineChartConfig(
             Object.keys(data.timeline.cases),
-            'Progress of cases',
+            'Cases',
             [
                 {
                     label: 'Total cases',
                     backgroundColor: window.chartColors.blue,
                     borderColor: window.chartColors.blue,
-                    data: totalCases, 
+                    data: totalCases,
                     fill: false,
                 },
                 {
                     label: 'Active cases',
-                    backgroundColor: window.chartColors.orange,
-                    borderColor: window.chartColors.orange,
-                    data: activeCases, 
+                    backgroundColor: window.chartColors.yellow,
+                    borderColor: window.chartColors.yellow,
+                    data: activeCases,
                     fill: false,
                 },
                 {
                     label: 'Death cases',
                     backgroundColor: window.chartColors.red,
                     borderColor: window.chartColors.red,
-                    data: deathCases, 
+                    data: deathCases,
                     fill: false,
                 },
                 {
@@ -280,9 +282,9 @@ function drawChart(chartType, data, canvasId) {
         var deathCases = Object.values(data.timeline.deaths);
         var recoveredCases = Object.values(data.timeline.recovered);
 
-        var activeCases = [];
         var totalCases = Object.values(data.timeline.cases);
 
+        var activeCases = [];
         var currentActiveCase = 0;
         for (var i = 0; i < totalCases.length; i++) {
             currentActiveCase = parseInt(totalCases[i]) - (parseInt(recoveredCases[i]) + parseInt(deathCases[i]));
@@ -328,7 +330,7 @@ function drawChart(chartType, data, canvasId) {
 
         var configLine = getLineChartConfig(
             Object.keys(data.timeline.cases),
-            'Progress of cases',
+            'Cases',
             [
                 {
                     label: 'New cases',
@@ -363,5 +365,115 @@ function drawChart(chartType, data, canvasId) {
         );
         if (window.historyNewCases) window.historyNewCases.destroy();
         window.historyNewCases = new Chart(ctx, configLine);
+    } else if (chartType == 'historygrowthHistory') {
+
+        var deathCases = Object.values(data.timeline.deaths);
+        var recoveredCases = Object.values(data.timeline.recovered);
+        var totalCases = Object.values(data.timeline.cases);
+
+        var activeCases = [];
+        var currentActiveCase = 0;
+        for (var i = 0; i < totalCases.length; i++) {
+            currentActiveCase = parseInt(totalCases[i]) - (parseInt(recoveredCases[i]) + parseInt(deathCases[i]));
+            activeCases.push(currentActiveCase);
+        }
+
+        var growthTotalCases = [];
+        var prevDayTotalCases = 0;
+        var growthCasesThatDay = 0;
+        for (var i = 0; i < totalCases.length; i++) {
+            if (prevDayTotalCases > 0) {
+                growthCasesThatDay = toFixed(parseInt(totalCases[i]) / prevDayTotalCases,2);
+                growthTotalCases.push(growthCasesThatDay);
+            }
+            prevDayTotalCases = parseInt(totalCases[i]);
+        }
+
+       
+        var growthTotalCases = [];
+        var prevDayTotalCases = 0;
+        var growthCasesThatDay = 0;
+        for (var i = 0; i < totalCases.length; i++) {
+            if (prevDayTotalCases > 0) {
+                growthCasesThatDay = toFixed(parseInt(totalCases[i]) / prevDayTotalCases,2);
+                growthTotalCases.push(growthCasesThatDay);
+            }
+            prevDayTotalCases = parseInt(totalCases[i]);
+        }
+
+        var growthDeathCases = [];
+        var prevDayDeathCases = 0;
+        var growthDeathsThatDay = 0;
+        for (var i = 0; i < deathCases.length; i++) {
+            if (prevDayDeathCases > 0) {
+                growthDeathsThatDay = toFixed(parseInt(deathCases[i]) / prevDayDeathCases,2);
+                growthDeathCases.push(growthDeathsThatDay);
+            }
+            prevDayDeathCases = parseInt(deathCases[i]);
+        }
+
+        var growthRecoveredCases = [];
+        var prevDayRecCases = 0;
+        var growthRecThatDay = 0;
+        for (var i = 0; i < recoveredCases.length; i++) {
+            if (prevDayRecCases > 0) {
+                growthRecThatDay = toFixed(parseInt(recoveredCases[i]) / prevDayRecCases,2);
+                growthRecoveredCases.push(growthRecThatDay);
+            }
+            prevDayRecCases = parseInt(recoveredCases[i]);
+        }
+
+        var growthActiveCases = [];
+        var prevDayActiveCases = 0;
+        var growthActiveThatDay = 0;
+        for (var i = 0; i < activeCases.length; i++) {
+            if (prevDayActiveCases > 0) {
+                growthActiveThatDay = toFixed(parseInt(activeCases[i]) / prevDayActiveCases,2);
+                growthActiveCases.push(growthActiveThatDay);
+            }
+            prevDayActiveCases = parseInt(activeCases[i]);
+        }
+
+       
+
+
+
+        var configLine = getLineChartConfig(
+            Object.keys(data.timeline.cases),
+            'Cases growth factor',
+            [
+                {
+                    label: 'Total cases growth factor',
+                    backgroundColor: window.chartColors.blue,
+                    borderColor: window.chartColors.blue,
+                    data: growthTotalCases,
+                    fill: false,
+                },
+                {
+                    label: 'Total active growth factor',
+                    backgroundColor: window.chartColors.yellow,
+                    borderColor: window.chartColors.yellow,
+                    data: growthActiveCases,
+                    fill: false,
+                },
+                {
+                    label: 'Total deaths growth factor',
+                    backgroundColor: window.chartColors.red,
+                    borderColor: window.chartColors.red,
+                    data: growthDeathCases,
+                    fill: false,
+                },
+                {
+                    label: 'Total recovered growth factor',
+                    backgroundColor: window.chartColors.green,
+                    borderColor: window.chartColors.green,
+                    data: growthRecoveredCases,
+                    fill: false,
+                }
+            ],
+
+        );
+        if (window.historygrowthHistory) window.historygrowthHistory.destroy();
+        window.historygrowthHistory = new Chart(ctx, configLine);
     }
 }

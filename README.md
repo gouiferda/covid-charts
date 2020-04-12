@@ -7,14 +7,15 @@ Front end app to visual covid-19 data around the world, made with javascript and
 
 ### Features
 
-- Fast, doesn't require node js server
-- COVID-19 data and charts(pie,line) per country
+
+- COVID-19 data with interactive pie and line charts per country
     - total tests
     - daily cases
     - to date cases
-    - historical data
-- Responsive
+    - historical cases, new cases and growth factor
 - Country link parameter [Example](https://gouiferda.github.io/covid-charts/?country=usa)
+- Fast, doesn't require node js server
+- Responsive on all screens
 
 ### Soon
 

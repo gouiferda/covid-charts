@@ -152,3 +152,8 @@ function annotate(number, maxPlaces, forcePlaces, abbr) {
     }
     return rounded + abbr
 }
+
+function toFixed(nb,p=2)
+{
+    return (Math.round(nb * 100) / 100).toFixed(p);
+}
