@@ -3,16 +3,16 @@
 
 Front end app to visual covid-19 data around the world, made with javascript and bootstrap.
 
-:warning: **Disclaimer**: This project is for educational purposes only. It is *not* an official source for covid statics.
-
 - [Live preview](https://gouiferda.github.io/covid-charts/)
 
-## :information_source: Data sources / APIs used
+:warning: **Disclaimer**: This project is for educational purposes only. It is *not* an official source for covid data.
 
-- [Novelcovid API](https://github.com/novelcovid/api)
-- [Restcountries API](https://restcountries.eu)
+## Data sources / APIs used
 
-## :fire: Features
+- :information_source: [Novelcovid API](https://github.com/novelcovid/api)
+- :information_source: [Restcountries API](https://restcountries.eu)
+
+## Features
 
 ### :heavy_check_mark: Current
 
@@ -35,6 +35,6 @@ Front end app to visual covid-19 data around the world, made with javascript and
 - Worldwide map with total country cases
 - Progression chart
 
-### :framed_picture: Screenshots
+## Screenshots
 
 ![Image](https://i.imgur.com/eht92ef.png)
