@@ -1,12 +1,20 @@
 
-## Covid charts project
+# Covid charts project
 
 Front end app to visual covid-19 data around the world, made with javascript and bootstrap.
 
+:warning: **Disclaimer**: This project is for educational purposes only. It is *not* an official source for covid statics.
+
 - [Live preview](https://gouiferda.github.io/covid-charts/)
 
-### Features
+## :information_source: Data sources / APIs used
 
+- [Novelcovid API](https://github.com/novelcovid/api)
+- [Restcountries API](https://restcountries.eu)
+
+## :fire: Features
+
+### :heavy_check_mark: Current
 
 - COVID-19 data with interactive pie and line charts per country
     - total tests
@@ -17,7 +25,7 @@ Front end app to visual covid-19 data around the world, made with javascript and
 - Fast, doesn't require node js server
 - Responsive on all screens
 
-### Soon
+### :hammer: Soon
 
 - Web scrapper for Morocco
 - Moroccan Map
@@ -27,6 +35,6 @@ Front end app to visual covid-19 data around the world, made with javascript and
 - Worldwide map with total country cases
 - Progression chart
 
-### Screenshots
+### :framed_picture: Screenshots
 
 ![Image](https://i.imgur.com/eht92ef.png)
