@@ -1,4 +1,19 @@
+
+
+
+
+function issetObj(val) {
+    return (val != null && (typeof val !== 'undefined'));
+}
+
+function issetElem(elemId) {
+    return issetObj(document.getElementById(elemId));
+}
+
+
+
 function betterNumbers(x) {
+    if (!issetObj(x)) return 'N/A';
     if (parseInt(x) <= 0) return 'N/A';
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -66,15 +81,6 @@ function getPercentage(nb, total, ad = 2) {
     var result = (parseInt(nb) * 100) / parseInt(total);
     return result.toFixed(ad) + '%';
 }
-
-function issetObj(val) {
-    return (val != null && (typeof val !== 'undefined'));
-}
-
-function issetElem(elemId) {
-    return issetObj(document.getElementById(elemId));
-}
-
 
 function selectElement(id, valueToSelect) {
     let element = document.getElementById(id);
