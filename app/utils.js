@@ -18,7 +18,6 @@ function betterNumbers(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-
 function getDate(unix_timestamp) {
     var date = new Date(unix_timestamp);
     var dd = date.getDate();
