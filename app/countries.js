@@ -162,7 +162,7 @@ var countriesList = {
     'Nigeria':'ng',
     //'Niue':'nu',
    // 'Norfolk Island':'nf',
-    'Northern Mariana Islands (the)':'mp',
+    //'Northern Mariana Islands (the)':'mp',
     'Norway':'no',
     'Oman':'om',
     'Pakistan':'pk',
