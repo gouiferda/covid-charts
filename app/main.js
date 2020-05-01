@@ -30,7 +30,7 @@ var selectCountry = document.getElementById('selectCountry');
 
 for(var c in countriesList)
 {
-     console.log(c + "=" + countriesList[c]);
+     //console.log(c + "=" + countriesList[c]);
    var option = document.createElement("option");
     option.text = c;
     option.value = countriesList[c];
